@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+  <a class="navbar-brand" href="/">Voyage Passion</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Pays
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#">France</a></li>
+          <li><a class="dropdown-item" href="#">Espagne</a></li>
+          <li><a class="dropdown-item" href="#">Japon</a></li>
+          <li><a class="dropdown-item" href="#">Afrique du sud</a></li>
+          </ul>
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Les commentaires
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{{path('app_commentaire_index') }}">Voir tous les commentaires</a></li>
+          <li><a class="dropdown-item" href="{{path('app_commentaire_new') }}">Ajouter un commentaire</a></li>  
+          </ul>
+      </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Le photofolio
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/photofolio">voir les photos</a></li>
+      </ul>
+    </li>
+    
+  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <li class="nav-item">
+    <a class="nav-link" href="{{path('app_logout') }}">
+      Se déconnecter
+    </a>
+  </li>
+  {% else %}
+  <li class="nav-item">
+  <a class="nav-link" href="{{path('app_login') }}">
+    Se connecter
+  </a>
+</li>
+{% endif %}
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  Langues
+</a>
+<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li><a class="dropdown-item" href="#">English</a></li>
+    <li><a class="dropdown-item" href="#">Español</a></li>
+    <li><a class="dropdown-item" href="#">日本語</a></li>
+</ul>
+</li>
+    </ul>
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light" type="submit">Rechercher</button>
+    </form>
+  </div>
+</div>
+</nav>
+
