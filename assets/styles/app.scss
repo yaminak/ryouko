@@ -1,33 +1,67 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "~bootstrap/scss/bootstrap";
-
+@import url("https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@600&family=Tangerine:wght@700&display=swap");
 body {
   background-color: rgb(211, 211, 211);
+}
+header {
+  width: 1700px;
+}
+
+header img {
+  margin: auto;
+  margin-left: 45px;
+  justify-content: center;
+  width: 1800px;
+  height: 900px;
 }
 
 thead {
   color: #fff;
 }
+.pays {
+  margin: auto;
+  width: 1600px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
 
 .japon {
   margin: auto;
-  width: 1500px;
+  height: 650px;
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
+
 .jap_img {
-  width: 50%;
+  width: 55%;
   margin-top: 145px;
+  margin-bottom: 70px;
   justify-content: center;
-  padding-left: 35px;
+  padding-left: 65px;
 }
 
 .text_jap {
-  width: 50%;
+  width: 45%;
   text-align: justify;
   justify-content: center;
-  margin-top: 145px;
-  padding-right: 5px;
+  margin-top: 155px;
+  margin-bottom: 70px;
+  padding-right: 45px;
+}
+
+.text_jap h1 {
+  text-align: center;
+  color: #0b2764;
+  font-size: 6.5rem;
+  font-weight: 890;
+  font-family: "Tangerine", cursive;
+}
+
+.row g-0 {
+  background: none;
 }
