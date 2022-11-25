@@ -10,6 +10,9 @@
             <tr>
                 <th>Id</th>
                 <th>Loisir</th>
+                <th>Pays</th>
+                <th>Catégorie</th>
+                <th>Photo</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +21,9 @@
             <tr>
                 <td>{{ hobby.id }}</td>
                 <td>{{ hobby.loisir }}</td>
+                <td>{{ hobby.pays.nom }}</td>
+                <td>{{ hobby.categorie.intitule }}</td>
+                <td>{{ hobby.photo }}</td>
                 <td>
                     <a href="{{ path('app_hobbies_show', {'id': hobby.id}) }}">show</a>
                     <a href="{{ path('app_hobbies_edit', {'id': hobby.id}) }}">edit</a>

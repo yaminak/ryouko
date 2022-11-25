@@ -6,60 +6,28 @@
     <h1>Pays</h1>
 
 
-        <div class="card mb-3 bg-transparent text-center mx-auto" style="max-width: 60rem;">
-  <img src="../images/gallery/kyoto.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h1 class="card-title">Japon</h1>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    {# <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> #}
-</div>
-</div>
-<div class="card bg-transparent mx-auto" style="width: 60rem;">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Identifiant : {{ pay.id }}</li>
-    <li class="list-group-item">Nom du pays : {{ pay.nom }}</li>
-    <li class="list-group-item">Drapeau : {{ pay.drapeau }}</li>
-    <li class="list-group-item">Nombre de population : {{ pay.population }}</li>
-    <li class="list-group-item">{{ pay.paysage }}</li>
-    <li class="list-group-item">{{ pay.description }}</li>
-    <li class="list-group-item">Superficie du pays : {{ pay.superficie }}</li>
-
-  </ul>
-</div>
+        <div class="card mb-3 bg-transparent text-center mx-auto" style="max-width: 70rem;">
+  
+            <img src="{{ asset("images/" ~ pay.paysage ) }}" alt="{{ pay.nom }}">
+    </div>
 
 
-    {# <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ pay.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ pay.nom }}</td>
-            </tr>
-            <tr>
-                <th>Drapeau</th>
-                <td>{{ pay.drapeau }}</td>
-            </tr>
-            <tr>
-                <th>Population</th>
-                <td>{{ pay.population }}</td>
-            </tr>
-            <tr>
-                <th>Paysage</th>
-                <td>{{ pay.paysage }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ pay.description }}</td>
-            </tr>
-            <tr>
-                <th>Superficie</th>
-                <td>{{ pay.superficie }}</td>
-            </tr>
-        </tbody>
-    </table> #}
+    <div class="card mb-3 mx-auto bg-transparent" style="max-width: 70rem;">
+    <div class="row g-0">
+      <div class="col-md-6 mx-auto mt-5" style="max-width: 9rem;">
+      <img src="{{ asset("images/" ~ pay.drapeau ) }}" class="img-fluid rounded-start"  alt="{{ pay.nom }}">
+      </div>
+      <div class="col-md-6 mt-4">
+        <div class="card-body bg-transparent">
+          <h1 class="card-title fw-bolder fst-italic">{{ pay.nom }}</h1>
+        <li class="list-group-item">Nombre de population : {{ pay.population }} Millions d'habitants</li>
+        <li class="list-group-item">Superficie du pays : {{ pay.superficie }} Km²</li>
+        </div>
+      </div>
+       
+  <p class="lh-base text-center mt-5">{{ pay.description }}</p>
+    </div>
+  </div>    
 
     <a href="{{ path('app_pays_index') }}">back to list</a>
 

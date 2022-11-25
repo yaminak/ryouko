@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Pays;
 use App\Form\PaysType;
 use App\Repository\PaysRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/pays")
@@ -35,12 +36,44 @@ class PaysController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fichierDrapeau = $form->get("drapeau")->getData();
+            $fichier = $form->get("paysage")->getData();
+            if( $fichierDrapeau ){
+                // on récupère le nom du fichier 
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                // La classe AsciiSlugger va remplacer les caractères spéciaux par des caractères autorisés dans les URL
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                // La fonction PHP 'uniquid' va générer un string unique sur le serveur
+                $nomFichier .= "_" . uniqid();
+                // on rajoute l'extension du nom de fichier original
+                $nomFichier .= "." . $fichier->guessExtension();
+                // on copie le fichier dans le dossier public/images avec le nouveau nom de fichier 
+                $fichierDrapeau->move("images", $nomFichier);
+
+                $pay->setDrapeau($nomFichier);
+            }
+            if( $fichier ){
+                // on récupère le nom du fichier 
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                // La classe AsciiSlugger va remplacer les caractères spéciaux par des caractères autorisés dans les URL
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                // La fonction PHP 'uniquid' va générer un string unique sur le serveur
+                $nomFichier .= "_" . uniqid();
+                // on rajoute l'extension du nom de fichier original
+                $nomFichier .= "." . $fichier->guessExtension();
+                // on copie le fichier dans le dossier public/images avec le nouveau nom de fichier 
+                $fichier->move("images", $nomFichier);
+
+                $pay->setPaysage($nomFichier);
+            }
             $paysRepository->add($pay, true);
 
             return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pays/new.html.twig', [
+            return $this->renderForm('pays/new.html.twig', [
             'pay' => $pay,
             'form' => $form,
         ]);
@@ -64,7 +97,39 @@ class PaysController extends AbstractController
         $form = $this->createForm(PaysType::class, $pay);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                if( $fichierDrapeau = $form->get("drapeau")->getData() ){
+                    $nomFichier = pathinfo($fichierDrapeau->getClientOriginalName(), PATHINFO_FILENAME);
+                    $slugger = new AsciiSlugger();
+                    $nomFichier = $slugger->slug($nomFichier);
+                    $nomFichier .= "_" . uniqid();
+                    $nomFichier .= "." . $fichierDrapeau->guessExtension();
+                    $fichierDrapeau->move("images", $nomFichier);
+    
+                    if( $pay->getDrapeau() ){
+                        $fichierDrapeau = $this->getParameter("image_directory") . $pay->getDrapeau();
+                        if( file_exists($fichierDrapeau) ){
+                            unlink($fichierDrapeau);
+                        } 
+                     }                    
+                    $pay->setDrapeau($nomFichier);
+                }
+                if( $fichier = $form->get("paysage")->getData() ){
+                    $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                    $slugger = new AsciiSlugger();
+                    $nomFichier = $slugger->slug($nomFichier);
+                    $nomFichier .= "_" . uniqid();
+                    $nomFichier .= "." . $fichier->guessExtension();
+                    $fichier->move("images", $nomFichier);
+    
+                    if( $pay->getPaysage() ){
+                        $fichier = $this->getParameter("image_directory") . $pay->getPaysage();
+                        if( file_exists($fichier) ){
+                            unlink($fichier);
+                        } 
+                     }                    
+                    $pay->setPaysage($nomFichier);
+            }
             $paysRepository->add($pay, true);
 
             return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);

@@ -28,7 +28,47 @@
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
                         </div>
                 </div>          
+                <div class="japon">
+                <div class="jap_img">
+                        <img src="images/gallery/espagne1.png" width="750" alt="">
+                </div>
+                <div class="text_jap">
+                        <h1>Espagne</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
+                </div>
+        </div>
+        <div class="japon">
+                        <div class="jap_img">
+                                <img src="images/gallery/afrique.png" width="450" alt="">
+                        </div>
+                        <div class="text_jap">
+                                <h1>Afrique du sud</h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
+                        </div>
+                </div>                    
         </div>
 </main>
 
+<table class="table">
+        <thead>
+            <tr>
+                <th>photo</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+{% for hobby in hobbies %}
+<tr>
+    <td><img width="200" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}"></td>
+    <td>{{ hobby.pays.nom }}</td>
+    
+</tr>
+{% else %}
+<tr>
+    <td colspan="2">no records found</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
 {% endblock %}

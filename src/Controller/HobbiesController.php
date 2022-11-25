@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Hobbies;
 use App\Form\HobbiesType;
 use App\Repository\HobbiesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/hobbies")
@@ -35,6 +36,23 @@ class HobbiesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fichier = $form->get("photo")->getData();
+            if( $fichier ){
+                // on récupère le nom du fichier 
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                // La classe AsciiSlugger va remplacer les caractères spéciaux par des caractères autorisés dans les URL
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                // La fonction PHP 'uniquid' va générer un string unique sur le serveur
+                $nomFichier .= "_" . uniqid();
+                // on rajoute l'extension du nom de fichier original
+                $nomFichier .= "." . $fichier->guessExtension();
+                // on copie le fichier dans le dossier public/images avec le nouveau nom de fichier 
+                $fichier->move("images", $nomFichier);
+
+                $hobby->setPhoto($nomFichier);
+            }
+        
             $hobbiesRepository->add($hobby, true);
 
             return $this->redirectToRoute('app_hobbies_index', [], Response::HTTP_SEE_OTHER);
