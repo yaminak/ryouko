@@ -2,22 +2,23 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Repository\HobbiesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="app_home")
      */
-    public function index(HobbiesRepository $hr): Response
+    public function index(CategorieRepository $cr): Response
     {
-        $hobbies = $hr->findByCategorieField('home');
-dd($hobbies);
+        $categorie = $cr->findOneByCategorieField('home');
         return $this->render('home/index.html.twig', [
-            'hobbies' => $hobbies,
+            'categorie' => $categorie,
         ]);
     }
 }

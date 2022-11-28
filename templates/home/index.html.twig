@@ -4,52 +4,33 @@
 
 {% block body %}
 <header>
-        <div class="header">
-                                <img src="images/gallery/arbre.jpg" alt="">
+        <div class="ms-5" style="width: 1700px;">
+                                <img src="images/gallery/arbre.jpg" class="img-fluid" alt="">
                         </div>
 </header>
 <main>
-        <div class="pays">
-                <div class="japon">
-                        <div class="jap_img">
-                                <img src="images/gallery/japon.png" width="500" alt="">
-                        </div>
-                        <div class="text_jap">
-                                <h1>Japon</h1>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
-                        </div>
-                </div>
-                <div class="japon">
-                        <div class="jap_img">
-                                <img src="images/gallery/france.png" width="450" alt="">
-                        </div>
-                        <div class="text_jap">
-                                <h1>France</h1>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
-                        </div>
-                </div>          
-                <div class="japon">
-                <div class="jap_img">
-                        <img src="images/gallery/espagne1.png" width="750" alt="">
-                </div>
-                <div class="text_jap">
-                        <h1>Espagne</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
-                </div>
+        <div class="container text-center">
+                <div class="row mt-5 pb-5">
+        {% if categorie is not null %}
+        {% for hobby in categorie.hobbies %}
+
+        <div class="col-md-6">
+                <img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
         </div>
-        <div class="japon">
-                        <div class="jap_img">
-                                <img src="images/gallery/afrique.png" width="450" alt="">
-                        </div>
-                        <div class="text_jap">
-                                <h1>Afrique du sud</h1>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, aspernatur est. Non commodi, pariatur inventore officiis quod laboriosam molestias dolores aspernatur obcaecati vitae nulla enim itaque assumenda eveniet laborum eos reiciendis praesentium distinctio nihil quia natus? Placeat quos suscipit eligendi dolorem adipisci magnam incidunt reiciendis sequi in nostrum. Ipsam placeat eos alias quibusdam, esse tempora pariatur necessitatibus asperiores aliquam suscipit cum dolorem. Corporis ab distinctio culpa corrupti nesciunt nisi, sapiente iure assumenda, iusto pariatur sint esse labore quae! Rerum quas sunt beatae harum ratione aliquid saepe amet possimus qui necessitatibus officiis perspiciatis neque quod modi, magnam exercitationem, ipsam libero sapiente. Expedita et, vero quasi tenetur illo earum aut praesentium officia perferendis maiores nemo pariatur? Animi, enim rerum eos consequatur cum illo ipsam, explicabo nihil officia deleniti excepturi soluta.</p>
-                        </div>
-                </div>                    
+        <div class="col-md-6">
+                <h1>{{ hobby.pays.nom}}</h1>
+                <p>{{ hobby.pays.description}}</p>
+        </div>
+
+{% endfor %}
+        {% else %}
+        pas de resultat
+{% endif %}
+                </div>
         </div>
 </main>
 
-<table class="table">
+{# <table class="table">
         <thead>
             <tr>
                 <th>photo</th>
@@ -58,10 +39,10 @@
         </thead>
         <tbody>
 
-{% for hobby in hobbies %}
+{% for hobby in categorie.hobbies %}
 <tr>
     <td><img width="200" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}"></td>
-    <td>{{ hobby.pays.nom }}</td>
+    <td>{{ categorie.categorie}}</td>
     
 </tr>
 {% else %}
@@ -70,5 +51,5 @@
 </tr>
 {% endfor %}
 </tbody>
-</table>
+</table> #}
 {% endblock %}

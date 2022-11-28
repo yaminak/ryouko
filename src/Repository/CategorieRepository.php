@@ -53,14 +53,31 @@ class CategorieRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+// SELECT * FROM `categorie` c 
+// LEFT JOIN `hobbies` h
+// ON c.id = h.categorie_id
+// LEFT JOIN `pays` p
+// ON h.pays_id = p.id
+// WHERE c.categorie = 'home';
 
-//    public function findOneBySomeField($value): ?Categorie
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+// public function findByCategorieField($value): array
+// {
+    // return $this->createQueryBuilder('c')
+    //     ->leftJoin('c.categorie', 'c', 'WITH','c.categorie = :val', 'h.id')
+    //     ->setParameter('val', $value)
+    //     ->setMaxResults(10)
+    //     ->getQuery()
+    //     ->getResult()
+    // ;
+// }
+
+   public function findOneByCategorieField(string $value): ?Categorie
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.categorie = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 }

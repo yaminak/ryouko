@@ -44,19 +44,19 @@ class HobbiesRepository extends ServiceEntityRepository
 //    /**
 //     * @return Hobbies[] Returns an array of Hobbies objects
 //     */
-   public function findByCategorieField($value): array
-   {
-       return $this->createQueryBuilder('h')
-        //    ->from('categorie', 'c')
-           ->leftJoin('h.categorie', 'c', 'WITH','c.categorie = :val', 'c.id')
-           ->leftJoin('h.pays', 'p')
-           ->setParameter('val', $value)
-        //    ->orderBy('h.id', 'ASC')
-           ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+//    public function findByCategorieField($value): array
+//    {
+//        return $this->createQueryBuilder('h')
+//         //    ->from('categorie', 'c')
+//            ->leftJoin('h.categorie', 'c', 'WITH','c.categorie = :val', 'c.id')
+//            ->leftJoin('h.pays', 'p')
+//            ->setParameter('val', $value)
+//         //    ->orderBy('h.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
 //    public function findOneBySomeField($value): ?Hobbies
 //    {

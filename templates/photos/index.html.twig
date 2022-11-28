@@ -5,35 +5,68 @@
 {% block body %}
     <h1>Photos index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Intitule</th>
-                <th>Chemin</th>
-                <th>Position</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for photo in photos %}
-            <tr>
-                <td>{{ photo.id }}</td>
-                <td>{{ photo.intitule }}</td>
-                <td>{{ photo.chemin }}</td>
-                <td>{{ photo.position }}</td>
-                <td>
-                    <a href="{{ path('app_photos_show', {'id': photo.id}) }}">show</a>
-                    <a href="{{ path('app_photos_edit', {'id': photo.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_photos_new') }}">Create new</a>
+        <main>
+            <div
+              class="container-fluid bg-trasparent my-4 p-3"
+              style="position: relative"
+            >
+              <div
+                class="flex-row"
+              >
+              <div class="d-flex justify-content-evenly row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-5 g-3">
+                <div class="col">
+                  <div class="card h-80 shadow-sm">
+                    <img
+                      src="https://www.freepnglogos.com/uploads/notebook-png/notebook-laptop-png-images-you-can-download-mashtrelo-14.png"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <div class="clearfix mb-3">
+                        <span class="float-start badge rounded-pill bg-success"
+                          >12354.00&euro;</span
+                        >
+                        <span class="float-end"><a href="#">Example</a></span>
+                      </div>
+                      <h5 class="card-title">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Veniam quidem eaque ut eveniet aut quis rerum. Asperiores
+                        accusamus harum ducimus velit odit ut. Saepe, iste optio
+                        laudantium sed aliquam sequi.
+                      </h5>
+                      <div class="d-grid gap-2 my-4">
+                        <a href="#" class="btn btn-warning">Check offer</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-80 shadow-sm">
+                    <img
+                      src="https://www.freepnglogos.com/uploads/notebook-png/notebook-laptop-png-images-you-can-download-mashtrelo-14.png"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <div class="clearfix mb-3">
+                        <span class="float-start badge rounded-pill bg-success"
+                          >12354.00&euro;</span
+                        >
+                        <span class="float-end"><a href="#">Example</a></span>
+                      </div>
+                      <h5 class="card-title">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Veniam quidem eaque ut eveniet aut quis rerum. Asperiores
+                        accusamus harum ducimus velit odit ut. Saepe, iste optio
+                        laudantium sed aliquam sequi.
+                      </h5>
+                      <div class="d-grid gap-2 my-4">
+                        <a href="#" class="btn btn-warning">Check offer</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
 {% endblock %}

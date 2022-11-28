@@ -83,16 +83,32 @@ class HobbiesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $hobbiesRepository->add($hobby, true);
+            if( $fichier = $form->get("photo")->getData() ){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                $nomFichier .= "_" . uniqid();
+                $nomFichier .= "." . $fichier->guessExtension();
+                $fichier->move("images", $nomFichier);
 
+                if( $hobby->getPhoto() ){
+                    $fichier = $this->getParameter("image_directory") . $hobby->getPhoto();
+                    if( file_exists($fichier) ){
+                        unlink($fichier);
+                    } 
+                 }                    
+                $hobby->setPhoto($nomFichier);
+        
+                $hobbiesRepository->add($hobby, true);
             return $this->redirectToRoute('app_hobbies_index', [], Response::HTTP_SEE_OTHER);
         }
-
+}
         return $this->renderForm('hobbies/edit.html.twig', [
             'hobby' => $hobby,
             'form' => $form,
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="app_hobbies_delete", methods={"POST"})
