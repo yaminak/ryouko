@@ -18,7 +18,6 @@ import "./styles/main.css";
 
 import "./js/bootstrap.bundle.min.js";
 import "./js/main.js";
-import "./js/main1.js";
 
 const $ = require("jquery");
 global.$ = global.jQuery = $;
