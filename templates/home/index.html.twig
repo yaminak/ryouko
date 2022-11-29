@@ -14,10 +14,10 @@
         {% if categorie is not null %}
         {% for hobby in categorie.hobbies %}
 
-        <div class="col-md-6">
+        <div class="col-md-6 mb-5">
                 <img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-5">
                 <h1>{{ hobby.pays.nom}}</h1>
                 <p>{{ hobby.pays.description}}</p>
         </div>

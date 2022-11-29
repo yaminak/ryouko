@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Hobbies;
+use App\Entity\Photos;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,7 +40,6 @@ class HobbiesRepository extends ServiceEntityRepository
         }
     }
    
-
 
 //    /**
 //     * @return Hobbies[] Returns an array of Hobbies objects

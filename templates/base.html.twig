@@ -26,13 +26,12 @@
             See note below about the "defer" attribute -->
         {% endblock %}
     </head>
-    <body>
+    <body> 
     {% block nav %}
-
-    {% include 'nav.html.twig' %}
-{% endblock %}
-        <h1>{% block h1 %}{% endblock %}</h1>
-            
+        {% include 'nav.html.twig' %}
+    {% endblock %}
+<h1>{% block h1 %}{% endblock %}</h1>
+        
         {% block body %}{% endblock %}
         {% include 'footer.html.twig' %}
         

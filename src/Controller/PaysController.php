@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Pays;
 use App\Form\PaysType;
+use App\Repository\CommentaireRepository;
 use App\Repository\PaysRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,11 +83,12 @@ class PaysController extends AbstractController
     /**
      * @Route("/{id}", name="app_pays_show", methods={"GET"})
      */
-    public function show(Pays $pay): Response
+    public function show(Request $request, Pays $pay, PaysRepository $paysRepository): Response
     {
         return $this->render('pays/show.html.twig', [
             'pay' => $pay,
         ]);
+    
     }
 
     /**
