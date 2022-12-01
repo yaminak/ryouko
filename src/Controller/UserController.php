@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -36,20 +37,29 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fichier = $form->get("avatar")->getData();
+            if( $fichier ){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                $nomFichier .= "_" . uniqid();
+                $nomFichier .= "." . $fichier->guessExtension();
+                $fichier->move("images", $nomFichier);
+                $user->setAvatar($nomFichier);
+            }                 
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
-                        $user,
-                        $form->get('password')->getData()
-                    )
-                );
-    
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
             $userRepository->add($user, true);
 
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
         }
+       
 
-        return $this->renderForm('user/new.html.twig', [
+            return $this->renderForm('user/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -74,8 +84,24 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
+            if( $fichier = $form->get("avatar")->getData() ){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                $nomFichier .= "_" . uniqid();
+                $nomFichier .= "." . $fichier->guessExtension();
+                $fichier->move("images", $nomFichier);
 
+                if( $user->getAvatar() ){
+                    $fichier = $this->getParameter("image_directory") . $user->getAvatar();
+                    if( file_exists($fichier) ){
+                        unlink($fichier);
+                    } 
+                } 
+                $user->setAvatar($nomFichier); 
+            }
+            
+                $userRepository->add($user, true);
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -79,6 +79,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $ville;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $avatar;
+
 
     public function __construct()
     {
@@ -280,6 +285,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(string $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

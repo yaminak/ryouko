@@ -4,22 +4,24 @@
 
 {% block body %}
 <header>
-        <div class="ms-5" style="width: 1700px;">
-                                <img src="images/gallery/arbre.jpg" class="img-fluid" alt="">
+        <div class="ms-5" style="width: 1800px;">
+                                <img src="images/gallery/arbre.jpg" class="img-fluid mb-5" alt="">
                         </div>
 </header>
 <main>
-        <div class="container text-center">
-                <div class="row mt-5 pb-5">
+        <div class="container text-center mt-5">
+                <div class="row gy-5 mt-5 pb-5 me-5">
         {% if categorie is not null %}
         {% for hobby in categorie.hobbies %}
 
-        <div class="col-md-6 mb-5">
-                <img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
+        <div class="col-6">
+                        <img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
         </div>
-        <div class="col-md-6 mt-5">
-                <h1>{{ hobby.pays.nom}}</h1>
+        <div class="col-6">
+        <div class="p-3 border border-primary border-3 bg-transparent ms-5 mt-5 px-5">
+                <h1 class="">{{ hobby.pays.nom}}</h1>
                 <p>{{ hobby.pays.description}}</p>
+        </div>
         </div>
 
 {% endfor %}
@@ -30,26 +32,4 @@
         </div>
 </main>
 
-{# <table class="table">
-        <thead>
-            <tr>
-                <th>photo</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-
-{% for hobby in categorie.hobbies %}
-<tr>
-    <td><img width="200" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}"></td>
-    <td>{{ categorie.categorie}}</td>
-    
-</tr>
-{% else %}
-<tr>
-    <td colspan="2">no records found</td>
-</tr>
-{% endfor %}
-</tbody>
-</table> #}
 {% endblock %}

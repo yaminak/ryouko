@@ -4,12 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Pays;
 use App\Form\PaysType;
-use App\Repository\CommentaireRepository;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Repository\PaysRepository;
+use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -83,12 +86,34 @@ class PaysController extends AbstractController
     /**
      * @Route("/{id}", name="app_pays_show", methods={"GET"})
      */
-    public function show(Request $request, Pays $pay, PaysRepository $paysRepository): Response
+    public function show(Request $request, Pays $pay, PaysRepository $paysRepository, CommentaireRepository $commentaireRepository): Response
     {
-        return $this->render('pays/show.html.twig', [
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+
+        $commentaires = $commentaireRepository->findAllByPays($pay); 
+        return $this->renderForm('pays/show.html.twig', [
             'pay' => $pay,
+            'commentaire' => $commentaire,
+            'commentaires' => $commentaires,
+            'form' => $form,
         ]);
     
+    }
+    
+    /**
+     * @Route("/ajout_commentaire-pays-{id}", name="app_commentaire_ajouter", methods={"POST"})
+     */
+    public function ajouter(Pays $pay, Request $rq, CommentaireRepository $commentaireRepository, Session $session)
+    {
+        $message = $rq->request->get("msg");
+        $commentaire = new Commentaire();
+        $commentaire->setMessage($message);
+        $commentaire->setUser($this->getUser());
+        $commentaire->setPays($pay);
+        $commentaireRepository->add($commentaire, true);
+        
+        return $this->json($message);
     }
 
     /**

@@ -23,6 +23,10 @@
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>
+            <tr>
+                <th>Avatar</th>
+                <td><img class="rounded-circle shadow-4-strong me-3" width= "60"  height="60" alt="{{user.nom}}" src="{{ asset(image_path ~ user.avatar)}}"/></td>
+            </tr>
         </tbody>
     </table>
 
@@ -31,4 +35,5 @@
     <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
 
     {{ include('user/_delete_form.html.twig') }}
+    
 {% endblock %}

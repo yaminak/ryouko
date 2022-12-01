@@ -5,8 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -16,6 +17,17 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username')
+            ->add('avatar', FileType::class, [
+                'mapped' => false,
+                "constraints" => [
+                    new File([
+                        "mimeTypes"         => [ "image/gif", "image/jpeg", "image/png" ],
+                        "mimeTypesMessage"  => "Les formats autorisés sont gif, jpg, png",
+                        "maxSize"           => "1024k",
+                        "maxSizeMessage"    => "Le fichier ne peut pas peser plus de 2Mo"
+                    ])
+                ]
+            ])
             ->add('roles', ChoiceType::class, [
                 'mapped' => false,
                 'choices'  => [
