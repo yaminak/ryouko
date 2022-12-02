@@ -8,84 +8,46 @@ body {
 thead {
   color: #fff;
 }
-.pays {
-  margin: auto;
-  width: 1600px;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
 
-.japon {
-  margin: auto;
-  height: 650px;
-  justify-content: space-between;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.jap_img {
-  width: 55%;
-  margin-top: 145px;
-  margin-bottom: 70px;
-  justify-content: center;
-  padding-left: 65px;
-}
-
-.text_jap {
-  width: 45%;
-  text-align: justify;
-  justify-content: center;
-  margin-top: 155px;
-  margin-bottom: 70px;
-  padding-right: 45px;
-}
-
-.text_jap h1 {
-  text-align: center;
-  color: #0b2764;
-  font-size: 6.5rem;
-  font-weight: 890;
-  font-family: "Tangerine", cursive;
-}
-
-// .row g-0 {
-//   background: none;
+// .pays {
+//   margin: auto;
+//   width: 1600px;
+//   justify-content: center;
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-direction: column;
 // }
 
-html,
-body,
-.intro {
-  height: 100%;
-}
+// .japon {
+//   margin: auto;
+//   height: 650px;
+//   justify-content: space-between;
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+// }
 
-.gradient-custom-2 {
-  /* fallback for old browsers */
-  background: #6a11cb;
+// .jap_img {
+//   width: 55%;
+//   margin-top: 145px;
+//   margin-bottom: 70px;
+//   justify-content: center;
+//   padding-left: 65px;
+// }
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to top,
-    rgba(106, 17, 203, 1),
-    rgba(37, 117, 252, 1)
-  );
+// .text_jap {
+//   width: 45%;
+//   text-align: justify;
+//   justify-content: center;
+//   margin-top: 155px;
+//   margin-bottom: 70px;
+//   padding-right: 45px;
+// }
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to top,
-    rgba(106, 17, 203, 1),
-    rgba(37, 117, 252, 1)
-  );
-}
+// h1 .titre_home {
+//   text-align: center;
+//   font-size: 6.5rem;
+//   font-weight: 890;
+//   font-family: "Tangerine", cursive;
+// }
 
-thead th,
-tbody th {
-  color: #fff;
-}
-
-tbody td {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.65);
-}

@@ -3,19 +3,21 @@
 {% block title %}Pays index{% endblock %}
 
 {% block body %}
-    <h1>Pays index</h1>
-
-    <table class="table">
-        <thead>
+    <h1 class="titre_pays text-center mt-5 mb-5">Pays index</h1>
+        <section class="intro">
+    <div class="mask d-flex align-items-center h-100 mx-5">
+    <div class="table-responsive">
+    <table class="table table-dark table-bordered mb-0">
+        <thead class="text-center align-middle">
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Drapeau</th>
-                <th>Population</th>
-                <th>Paysage</th>
-                <th>Description</th>
-                <th>Superficie</th>
-                <th>actions</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Drapeau</th>
+                <th scope="col">Population</th>
+                <th scope="col">Paysage</th>
+                <th scope="col">Description</th>
+                <th scope="col">Superficie</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,23 +25,27 @@
             <tr>
                 <td>{{ pay.id }}</td>
                 <td>{{ pay.nom }}</td>
-                <td>{{ pay.drapeau }}</td>
+                <td><img class="rounded-none shadow-1-strong me-3" width="50" height="50" src="{{ asset(image_path ~ pay.drapeau)}}"/></td>
                 <td>{{ pay.population }} Millions d'Habitants</td>
-                <td>{{ pay.paysage }}</td>
+                <td><img class="rounded-none" width="80" height="60" src="{{ asset(image_path ~ pay.paysage)}}"</td>
                 <td>{{ pay.description }}</td>
                 <td>{{ pay.superficie }} Km²</td>
                 <td>
                     <a href="{{ path('app_pays_show', {'id': pay.id}) }}">show</a>
                     <a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_pays_new') }}">Create new</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        <div>
+    </div>
+    <button class=" btn btn-dark mt-5 mb-5 ms-5">
+<a href="{{ path('app_pays_new') }}">Create new</a>
+</button>
+</section>
 {% endblock %}

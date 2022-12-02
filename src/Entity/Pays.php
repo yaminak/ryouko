@@ -53,10 +53,15 @@ class Pays
      * @ORM\OneToMany(targetEntity=Hobbies::class, mappedBy="pays")
      */
     private $hobbies;
+      /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="pays")
+     */
+    private $commentaires;
 
     public function __construct()
     {
         $this->hobbies = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
 

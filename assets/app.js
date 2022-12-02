@@ -21,21 +21,3 @@ import "./js/main.js";
 
 const $ = require("jquery");
 global.$ = global.jQuery = $;
-
-$("#form-{{pay.id}}").on("submit", (evtSubmit) => {
-    evtSubmit.preventDefault();
-    console.log($("#form-{{pay.id}} [name='message']").val());
-    $.ajax({
-      url: "{{ path('app_commentaire_ajouter', {id: pay.id}) }}",
-      method: "POST",
-      data: "msg=" + $("#form-{{pay.id}} [name='commentaire[message]']").val(),
-      dataType: "json",
-      success: (data) => {
-        $("#comment").html(data);
-        console.log("Data = " + data);
-      },
-      error: (jqXHR, status, error) => {
-        console.log("ERREUR AJAX", status, error);
-      },
-    });
-  });

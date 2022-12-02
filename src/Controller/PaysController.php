@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pays;
+use App\Entity\User;
 use App\Form\PaysType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
@@ -91,11 +92,8 @@ class PaysController extends AbstractController
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
-        $commentaires = $commentaireRepository->findAllByPays($pay); 
         return $this->renderForm('pays/show.html.twig', [
             'pay' => $pay,
-            'commentaire' => $commentaire,
-            'commentaires' => $commentaires,
             'form' => $form,
         ]);
     

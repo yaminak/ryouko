@@ -47,13 +47,13 @@ class CommentaireRepository extends ServiceEntityRepository
        return $this->createQueryBuilder('c')
            ->andWhere('c.pays = :val')
            ->setParameter('val', $value)
-           ->orderBy('c.id', 'ASC')
+           ->orderBy('c.id DESC')
            ->setMaxResults(10)
            ->getQuery()
            ->getResult()
        ;
    }
-
+   
 //    public function findOneBySomeField($value): ?Commentaire
 //    {
 //        return $this->createQueryBuilder('c')
