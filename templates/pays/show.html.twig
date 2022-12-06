@@ -48,10 +48,14 @@
             <p class="mt-3 mb-4 pb-2 text-dark" id="comment">
             </p>
             <div class="small d-flex justify-content-start">
-              <a href="#!" class="d-flex align-items-center me-3">
+              <a href="../php/action.php?t=2&id=<?= $id ?>" class="d-flex align-items-center me-3">
                 <i class="far fa-thumbs-up me-2"></i>
                 <p class="mb-0">Like</p>
               </a>
+              <a href="../php/action.php?t=1&id=<?= $id ?>" class="d-flex align-items-center me-3">
+            <i class="far fa-thumbs-down me-2"></i>
+            <p class="mb-0">Dislike</p>
+            </a>
               <a href="{{ path("app_commentaire_new") }}" class="d-flex align-items-center me-3">
                 <i class="far fa-comment-dots me-2"></i>
                 <p class="mb-0">Comment</p>
@@ -80,7 +84,7 @@
               {% if app.user %} 
               <div class="float-end mt-2 pt-1">
                 <button  class="btn btn-primary btn-sm">{{ button_label|default('Post Comment') }}</button>
-                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+
               </div>
               {% else %}
                   <p class="alert alert-danger">
@@ -97,7 +101,7 @@
 </section>
   
 
-    {{ include('pays/_delete_form.html.twig') }}
+    
 
  <script>
 window.addEventListener("load", () => {
@@ -146,19 +150,24 @@ window.addEventListener("load", () => {
 
 
            <small>2 days ago</small>
-
+            {{ include('pays/_delete_form.html.twig') }}
            </div>  
-         </div>         
+           
+         </div> 
+                 
        </div>
+       
      </div>
+     
 </div>
 {% else %}
 <tr>
  <td colspan="3">no records found</td>
 </tr>
 {% endfor %}
-<a href="{{ path('app_pays_index') }}">back to list</a>
-<a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a>
-<a href="#" class=" btn btn-ligth">Go Up</a>
+{# <a href="{{ path('app_pays_index') }}">back to list</a>
+<a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a> #}
+<a href="#" class=" btn btn-primary ms-5">Go Up</a>
+
 {% endblock %}
 

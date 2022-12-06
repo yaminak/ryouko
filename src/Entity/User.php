@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=3)
+     * @ORM\Column(type="string", length=50)
      */
     private $civilite;
 
@@ -70,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=5)
      */
     private $codePostal;
 

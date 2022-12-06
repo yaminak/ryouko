@@ -3,7 +3,7 @@
 {% block title %}Photos{% endblock %}
 
 {% block body %}
-    <h1>Photos</h1>
+    {# <h1>Photos</h1>
 
     <table class="table">
         <tbody>
@@ -24,9 +24,9 @@
                 <td>{{ photo.position }}</td>
             </tr>
         </tbody>
-    </table>
+    </table> #}
 
-    <a href="{{ path('app_photos_index') }}">back to list</a>
+    {# <a href="{{ path('app_photos_index') }}">back to list</a>
 
     <a href="{{ path('app_photos_edit', {'id': photo.id}) }}">edit</a>
 
@@ -96,7 +96,7 @@
               {{.message }}
         </p> #}
 
-        <div class="small d-flex justify-content-start">
+        {# <div class="small d-flex justify-content-start">
           <a href="#!" class="d-flex align-items-center me-3">
             <i class="far fa-thumbs-up me-2"></i>
             <p class="mb-0">Like</p>
@@ -115,26 +115,26 @@
         <div class="d-flex flex-start w-100">
           <img class="rounded-circle shadow-1-strong me-3"
               src="{{ asset(image_path ~ app.user.avatar)}}" alt="avatar" width="40"
-            height="40" />
+            height="40" /> #}
 
             {# <form class="form-outline w-100" id="form-{{pay.id}}"> #}
-            {{ form_start(form) }}
+            {# {{ form_start(form) }} #}
             {# {{ form_widget(form) }}  #}
-            {% if app.user %}
+            {# {% if app.user %} #}
             {# <textarea class="form-control" id="comment" rows="4"
               style="background: #fff;"></textarea> #}
-          </div>
+          {# </div>
         </div>
         <div class="float-end mt-2 pt-1">
         
         <button class="btn btn-primary btn-sm">{{ button_label|default('Save') }}</button>
-        <button class="btn btn-outline-primary btn-sm">Cancel</button>
-     {% else %} 
+        <button class="btn btn-outline-primary btn-sm">Cancel</button> #}
+     {# {% else %} 
         <p class="alert alert-danger">Connectez-vous et laissez un commentaire</p>
-    {% endif %} 
-    {{ form_end(form) }}
+    {% endif %}  #}
+    {# {{ form_end(form) }} #}
     {# </form> #}
-        </div>
+        {# </div>
       </div>
     </div>
   </div>
@@ -142,23 +142,23 @@
 </div>
 </section>
   
-      </div>
+      </div> #}
 
-    {{ include('pays/_delete_form.html.twig') }}
+    {# {{ include('pays/_delete_form.html.twig') }} #}
 
-    {% for leCommentaire in pay.commentaires %}
-    <div class="container mt-5">
+    {# {% for leCommentaire in pay.commentaires %} #}
+    {# <div class="container mt-5">
         <div class="row  d-flex justify-content-center">
           <div class="col-md-8">
               <div class="headings d-flex justify-content-between align-items-center mb-3">
-                <div class="buttons">
+                <div class="buttons"> #}
                     {# <span class="badge bg-white d-flex flex-row align-items-center">
                         {# <span class="text-primary">Comments "ON"</span> #}
                         {# <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>  
                         </div> #}
                     {# </span> #} 
-                </div>
+                {# </div>
             </div>
 
             <div class="card p-3">
@@ -201,12 +201,12 @@
             </div>         
           </div>
     </div>
-</div>
-{% else %}
-<tr>
+</div> #}
+{# {% else %} #}
+{# <tr>
     <td colspan="3">no records found</td>
-</tr>
-{% endfor %}
+</tr> #}
+{# {% endfor %} #}
 
     {# <form id="form-{{pay.id}}">
     {{ form_start(form) }}
@@ -230,32 +230,32 @@
     </section> #}
 
  <script>
-window.addEventListener("load", () => {
-  $("#form-{{pay.id}}").on("submit", (evtSubmit) => {
-    evtSubmit.preventDefault();
-    console.log($("#form-{{pay.id}} [name='message']").val());
-    $.ajax({
-      url: "{{ path('app_commentaire_ajouter', {id: pay.id}) }}",
-      method: "POST",
-      data: "msg=" + $("#form-{{pay.id}} [name='commentaire[message]']").val(),
-      dataType: "json",
-      success: (data) => {
-        $("#comment").html(data);
-        console.log("Data = " + data);
-      },
-      error: (jqXHR, status, error) => {
-        console.log("ERREUR AJAX", status, error);
-      },
-    });
-  });
-  });
- </script>
+// window.addEventListener("load", () => {
+//   $("#form-{{pay.id}}").on("submit", (evtSubmit) => {
+//     evtSubmit.preventDefault();
+//     console.log($("#form-{{pay.id}} [name='message']").val());
+//     $.ajax({
+//       url: "{{ path('app_commentaire_ajouter', {id: pay.id}) }}",
+//       method: "POST",
+//       data: "msg=" + $("#form-{{pay.id}} [name='commentaire[message]']").val(),
+//       dataType: "json",
+//       success: (data) => {
+//         $("#comment").html(data);
+//         console.log("Data = " + data);
+//       },
+//       error: (jqXHR, status, error) => {
+//         console.log("ERREUR AJAX", status, error);
+//       },
+//     });
+//   });
+//   });
+  </script>
 
- <script>
-  $(document).ready(function () {
-    new WOW().init();
-  });
- </script>
-{% endblock %}
+//  <script>
+//   $(document).ready(function () {
+//     new WOW().init();
+//   });
+//  </script>
+{% endblock %} 
 
 
