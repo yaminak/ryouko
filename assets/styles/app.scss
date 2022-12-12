@@ -11,19 +11,19 @@ thead {
 
 .gradient-custom {
   /* fallback for old browsers */
-  background: #6a11cb;
+  background: rgb(0, 0, 3);
 
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(
     to right,
-    rgba(106, 17, 203, 1),
+    rgb(5, 1, 51),
     rgba(37, 117, 252, 1)
   );
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(
     to right,
-    rgba(106, 17, 203, 1),
+    rgba(5, 1, 51, 1),
     rgba(37, 117, 252, 1)
   );
 }
@@ -37,7 +37,7 @@ button {
   padding: 20px 50px;
   border-radius: 50px;
   font-size: 1.5em;
-  box-shadow: 0px -0px 0px 0px rgba(143, 64, 248, 0.5),
+  box-shadow: 0px -0px 0px 0px rgba(5, 1, 51, 0.5),
     0px 0px 0px 0px rgba(39, 200, 255, 0.5);
   transition: all 0.2s;
 }
@@ -46,7 +46,7 @@ button::after {
   content: "";
   width: 400px;
   height: 400px;
-  background: linear-gradient(225deg, #27d86c 0%, #26caf8 50%, #c625d0 100%);
+  background: linear-gradient(225deg, #005b23 0%, #26caf8 50%, #3857ef 100%);
   position: absolute;
   top: -50px;
   left: -100px;
@@ -60,6 +60,6 @@ button:hover::after {
 
 button:hover {
   transform: translate(0, -6px);
-  box-shadow: 10px -10px 25px 0 rgba(143, 64, 248, 0.25),
+  box-shadow: 10px -10px 25px 0 rgba(5, 1, 51, 0.25),
     -10px 10px 25px 0px rgba(39, 200, 255, 0.25);
 }

@@ -48,11 +48,11 @@
             <p class="mt-3 mb-4 pb-2 text-dark" id="comment">
             </p>
             <div class="small d-flex justify-content-start">
-              <a href="../php/action.php?t=2&id=<?= $id ?>" class="d-flex align-items-center me-3">
+              <a href="#" class="d-flex align-items-center me-3">
                 <i class="far fa-thumbs-up me-2"></i>
                 <p class="mb-0">Like</p>
               </a>
-              <a href="../php/action.php?t=1&id=<?= $id ?>" class="d-flex align-items-center me-3">
+              <a href="#" class="d-flex align-items-center me-3">
             <i class="far fa-thumbs-down me-2"></i>
             <p class="mb-0">Dislike</p>
             </a>
@@ -126,7 +126,7 @@ window.addEventListener("load", () => {
  </script>
  
  {% for leCommentaire in pay.commentaires  |sort((a, b) => a.id <=> b.id)|reverse %}
- <div class="container mt-2">
+ <div class="container ">
      <div class="row  d-flex justify-content-center">
        <div class="col-md-8">
            <div class="headings d-flex justify-content-between align-items-center mb-3">
@@ -140,7 +140,7 @@ window.addEventListener("load", () => {
              </div>
          </div>
 
-         <div class="card">
+         <div class="card mb-3">
              <div class="d-flex justify-content-between align-items-center">
                <div class="user d-flex flex-row align-items-center">
                  <img src="{{ asset(image_path ~ leCommentaire.user.avatar)}}" width="30" class="user-img rounded-circle ms-2 mr-2">
@@ -148,8 +148,16 @@ window.addEventListener("load", () => {
              <p class="font-weight-bold text-dark mb-1 ms-3">{{ leCommentaire.message }}</p>
            </div>
 
-
            <small>2 days ago</small>
+            {# {% if leCommentaire.likes is not empty %}
+              <a href="#"class="d-flex align-items-center me-3">
+            <i class="far fa-thumbs-up me-2"></i>
+            <p class="mb-0">Like</p>
+          </a>
+            {{leCommentaire.likes}} like(s)
+            {% else %}
+              0 like
+            {% endif %} #}
             {{ include('pays/_delete_form.html.twig') }}
            </div>  
            
@@ -165,9 +173,13 @@ window.addEventListener("load", () => {
  <td colspan="3">no records found</td>
 </tr>
 {% endfor %}
+
+
 {# <a href="{{ path('app_pays_index') }}">back to list</a>
 <a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a> #}
-<a href="#" class=" btn btn-primary ms-5">Go Up</a>
+<div class="position-relative">
+<a href="#" class=" btn btn-primary position-absolute bottom-0 end-0 me-5 mb-5">Go Up ⇧</a>
+</div>
 
 {% endblock %}
 
