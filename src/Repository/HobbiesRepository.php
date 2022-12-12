@@ -39,7 +39,15 @@ class HobbiesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-   
+    public function findOneByHobbiesField(string $value): ?Hobbies
+    {
+        return $this->createQueryBuilder('h')
+            ->andWhere('h.loisir = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
 //    /**
 //     * @return Hobbies[] Returns an array of Hobbies objects

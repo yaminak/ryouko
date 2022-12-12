@@ -8,6 +8,7 @@ use App\Form\PaysType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\PaysRepository;
+use App\Repository\HobbiesRepository;
 use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,7 +89,8 @@ class PaysController extends AbstractController
      * @Route("/{id}", name="app_pays_show", methods={"GET"})
      */
     public function show(Request $request, Pays $pay, PaysRepository $paysRepository, CommentaireRepository $commentaireRepository): Response
-    {
+    
+        {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
@@ -96,6 +98,7 @@ class PaysController extends AbstractController
             'pay' => $pay,
             'form' => $form,
         ]);
+        
     
     }
     

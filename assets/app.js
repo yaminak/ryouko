@@ -18,6 +18,7 @@ import "./styles/main.css";
 
 import "./js/bootstrap.bundle.min.js";
 import "./js/main.js";
+import "./js/vanilla-tilt.babel.min.js";
 
 const $ = require("jquery");
 global.$ = global.jQuery = $;

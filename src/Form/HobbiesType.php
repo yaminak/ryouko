@@ -31,8 +31,8 @@ class HobbiesType extends AbstractType
                 "required" => false,
                 "constraints" => [
                     new File([
-                        "mimeTypes"         => [ "image/gif", "image/jpeg", "image/png" ],
-                        "mimeTypesMessage"  => "Les formats autorisés sont gif, jpg, png",
+                        "mimeTypes"         => [ "image/gif", "image/jpeg", "image/png", "image/jfif" ],
+                        "mimeTypesMessage"  => "Les formats autorisés sont gif, jpg, png, jfif",
                         "maxSize"           => "2048k",
                         "maxSizeMessage"    => "Le fichier ne peut pas peser plus de 2Mo"
                     ])

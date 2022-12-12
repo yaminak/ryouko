@@ -26,6 +26,42 @@
   </div>
 </div>    
 
+
+<main>
+  <div
+    class="card-deck"
+    style="position: relative"
+  >
+    <div
+      class="flex-row">
+    <div class="d-flex justify-content-evenly row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-5 g-3">
+      <div class="col">
+        {% for hobby in pay.hobbies %} 
+        {% if hobby.categorie.categorie != "home" %}
+        <div class="card h-80 shadow-sm text-dark bg-light mb-3" data-tilt data-tilt-scale="1.1">
+        <img src="{{ asset("images/" ~ hobby.photo) }}" alt="{{ hobby.loisir }}">
+          <div class="card-body rgb">
+            <h5 class="card-title">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Veniam quidem eaque ut eveniet aut quis rerum. Asperiores
+              accusamus harum ducimus velit odit ut. Saepe, iste optio
+              laudantium sed aliquam sequi.
+            </h5>
+            <div class="d-grid gap-2 my-4">
+              <a href="#" class="btn btn-warning">Check offer</a>
+            </div>
+          </div>
+        </div>
+     
+      
+      {% endif %}
+    {% endfor %}
+  </div>
+    </div>
+  </div>
+</main>
+
+
 <section style="background-color: #000;">
   <div class="container my-5 py-5">
     <div class="row d-flex justify-content-center">
@@ -66,6 +102,8 @@
               </a>
             </div>
           </div>
+
+          
           <form id="form-{{pay.id}}">
           {{ form_start(form) }}
             <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
@@ -174,12 +212,12 @@ window.addEventListener("load", () => {
 </tr>
 {% endfor %}
 
-
 {# <a href="{{ path('app_pays_index') }}">back to list</a>
 <a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a> #}
 <div class="position-relative">
 <a href="#" class=" btn btn-primary position-absolute bottom-0 end-0 me-5 mb-5">Go Up ⇧</a>
 </div>
+
 
 {% endblock %}
 
