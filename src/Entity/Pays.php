@@ -58,6 +58,11 @@ class Pays
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $langues;
+
     public function __construct()
     {
         $this->hobbies = new ArrayCollection();
@@ -199,6 +204,18 @@ class Pays
                 $hobby->setPays(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLangues(): ?string
+    {
+        return $this->langues;
+    }
+
+    public function setLangues(?string $langues): self
+    {
+        $this->langues = $langues;
 
         return $this;
     }

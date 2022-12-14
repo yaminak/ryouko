@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Pays;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/categorie")
@@ -86,5 +87,16 @@ class CategorieController extends AbstractController
         }
 
         return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
+    }
+        
+    /**
+     * @Route("/{pays}/{id}", name="app_categorie_infos", methods={"GET"})
+     */
+    public function infos(Pays $pays, Categorie $categorie): Response
+    {
+        return $this->render('categorie/infos.html.twig', [
+            'pays' => $pays,
+            'categorie' => $categorie
+        ]);
     }
 }

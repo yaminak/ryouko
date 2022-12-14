@@ -42,6 +42,7 @@ class PaysType extends AbstractType
             ])
             ->add('description')
             ->add('superficie')
+            ->add('langues')
         ;
     }
 

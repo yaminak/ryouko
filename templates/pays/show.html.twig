@@ -15,11 +15,14 @@
     </div>
     <div class="col-md-6 mt-4">
       <div class="card-body bg-transparent">
-        <h1 class="card-title fw-bolder fst-italic">{{ pay.nom }}</h1>
-        <li class="list-group-item">Nombre de population : {{ pay.population }} Millions d'habitants</li>
+        <h1 class="card-title fw-bolder fst-italic text-decoration-underline mb-3">{{ pay.nom }}</h1>
+        <li class="list-group-item"><strong class="pays-infos">Nombre de population :</strong> {{ pay.population }} Millions d'habitants</li>
         <li class="list-group-item">
-          Superficie du pays : {{ pay.superficie }} Km²
+        <strong class="pays-infos">Superficie du pays :</strong> {{ pay.superficie }} Km²
         </li>
+        <li class="list-group-item">
+        <strong class="pays-infos">Langues :</strong> {{ pay.langues }} 
+      </li>
       </div>
     </div>
     <p class="lh-base text-center mt-5">{{ pay.description }}</p>
@@ -37,17 +40,17 @@
     <div class="d-flex justify-content-evenly row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-5 g-3">
         {% for hobby in pay.hobbies %} 
         {% if hobby.categorie.categorie != "home" %}
-        <div class="card h-80 shadow-sm text-dark bg-light mb-3" data-tilt data-tilt-scale="1.1">
-        <img src="{{ asset("images/" ~ hobby.photo) }}" alt="{{ hobby.loisir }}">
-          <div class="card-body rgb">
-            <h5 class="card-title text-center fs-2">
+        <div class="card h-80 shadow-sm text-dark bg-light mb-3 rgb" data-tilt data-tilt-scale="1.1">
+        <img class="image" src="{{ asset("images/" ~ hobby.photo) }}" alt="{{ hobby.loisir }}">
+          <div class="card-body">
+            <h5 class="card-title text-center fs-2 mb-3">
             {{ hobby.categorie }}
             </h5>
             <p class="card-text text-center">
               {{ hobby.categorie.description }}
             </p>
-            <div class="d-grid gap-2 my-4">
-              <a href="#" class="btn btn-warning fs-5">See more ⇨</a>
+            <div class="lien text-center mt-5 mb-3">
+              <a href="{{ path('app_categorie_infos', {'pays': pay.id, 'id': hobby.categorie.id}) }}" class="btn btn-warning fs-5 text-secondary">See more ⇨</a>
             </div>
           </div>
         </div>
@@ -66,7 +69,7 @@
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body-1">
             <div class="d-flex flex-start align-items-center">
               
             <img class="rounded-circle shadow-1-strong me-3"

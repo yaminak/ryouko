@@ -17,6 +17,7 @@
                 <th scope="col">Paysage</th>
                 <th scope="col">Description</th>
                 <th scope="col">Superficie</th>
+                <th scope="col">Langues</th>
                 <th scope="col">actions</th>
             </tr>
         </thead>
@@ -30,11 +31,12 @@
                 <td><img class="rounded-none" width="80" height="60" src="{{ asset(image_path ~ pay.paysage)}}"</td>
                 <td>{{ pay.description }}</td>
                 <td>{{ pay.superficie }} Km²</td>
+                <td>{{ pay.langues }}</td>
                 <td>
                     <a href="{{ path('app_pays_show', {'id': pay.id}) }}">show</a>
                     <a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a>
-                        </td>
-                    </tr>
+                </td>
+            </tr>
                 {% else %}
                     <tr>
                         <td colspan="8">no records found</td>

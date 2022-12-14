@@ -82,10 +82,10 @@ button:hover {
     )
     repeat 0% 0% / 300% 100%;
   position: absolute;
-  inset: -3px;
-  border-radius: 16px;
+  inset: -4px;
+  // border-radius: 35px;
   filter: blur(8px);
-  z-index: -1;
+  z-index: -2;
   animation: rgb 6s linear infinite;
 }
 @keyframes rgb {
@@ -98,4 +98,30 @@ button:hover {
   100% {
     background-position: 0% 50%;
   }
+}
+.card-body {
+  background: rgb(23, 21, 21);
+  text-align: justify;
+  box-shadow: 5px 5px 15px rgba(63, 62, 62, 0.9);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.card-text {
+  color: white;
+  font-size: 17px;
+  font-weight: 300;
+}
+.image {
+  background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-size: cover;
+}
+
+.card-title {
+  color: rgb(87, 84, 84);
+}
+
+.pays-infos {
+  color: #ffca2c;
 }
