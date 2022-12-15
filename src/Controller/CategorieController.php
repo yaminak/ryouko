@@ -95,7 +95,7 @@ class CategorieController extends AbstractController
     public function infos(Pays $pays, Categorie $categorie): Response
     {
         return $this->render('categorie/infos.html.twig', [
-            'pays' => $pays,
+            'pay' => $pays,
             'categorie' => $categorie
         ]);
     }

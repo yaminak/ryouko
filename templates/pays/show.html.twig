@@ -40,7 +40,7 @@
     <div class="d-flex justify-content-evenly row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-5 g-3">
         {% for hobby in pay.hobbies %} 
         {% if hobby.categorie.categorie != "home" %}
-        <div class="card h-80 shadow-sm text-dark bg-light mb-3 rgb" data-tilt data-tilt-scale="1.1">
+        <div class="card h-80 shadow-sm text-dark bg-light mb-3 rgb" data-tilt data-tilt-scale="0.8">
         <img class="image" src="{{ asset("images/" ~ hobby.photo) }}" alt="{{ hobby.loisir }}">
           <div class="card-body">
             <h5 class="card-title text-center fs-2 mb-3">
@@ -69,7 +69,7 @@
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
         <div class="card">
-          <div class="card-body-1">
+          <div class="card-body-1 ms-4 mt-2">
             <div class="d-flex flex-start align-items-center">
               
             <img class="rounded-circle shadow-1-strong me-3"
