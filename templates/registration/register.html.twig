@@ -9,35 +9,32 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white me-5" style="border-radius: 1rem; width:35rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body-register p-5 text-center">
 <div class="mb-md-5 mt-md-4 pb-5">
     
 <h2 class="fw-bold mb-2 text-primary fst-italic">CREATE AN ACCOUNT</h2>
-<p class="text-white-50 mb-5">Please enter your informations</p>
+<p class="text-white-50 mt-3 mb-5">Please enter your informations</p>
 
     
 <form method="post">
         <div class="form-outline">
         {{ form_start(registrationForm) }}
-        {# <input type="text" id="form3Example1cg" class="form-control form-control-lg" /> #}
             {{ form_row(registrationForm.avatar) }}
-            {{ form_row(registrationForm.username) }}
-            {{ form_row(registrationForm.civilite) }}
-            {{ form_row(registrationForm.prenom) }}
-            {{ form_row(registrationForm.nom) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.adresse) }}
-            {{ form_row(registrationForm.codePostal) }}
-            {{ form_row(registrationForm.ville) }}
-            {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+            {{ form_row(registrationForm.username, {'attr': {'placeholder': 'Username'}}) }}
+            {{ form_row(registrationForm.civilite, {'attr': {'placeholder': 'Civility'}}) }}
+            {{ form_row(registrationForm.prenom, {'attr': {'placeholder': 'First name'}}) }} 
+            {{ form_row(registrationForm.nom, {'attr': {'placeholder': 'Last name'}}) }}
+            {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Email'}}) }}
+            {{ form_row(registrationForm.adresse, {'attr': {'placeholder': 'Address'}}) }}
+            {{ form_row(registrationForm.codePostal, {'attr': {'placeholder': 'Zip code'}}) }}
+            {{ form_row(registrationForm.ville, {'attr': {'placeholder': 'City'}}) }}
+            {{ form_row(registrationForm.plainPassword, {'attr': {'placeholder': 'Password'}}) }}
        
         {# <div class="form-outline mb-4">
         <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
         <label class="form-label" for="form3Example4cdg">Repeat your password</label>
       </div> #}
-        <div class="form-check d-flex justify-content-center mb-5">
+        <div class="form-check d-flex justify-content-center mt-5 mb-5">
                  
             {{ form_row(registrationForm.agreeTerms) }}<u class=" terms ms-2 text-primary" href="#!"> in Terms of service</u>
         </div>

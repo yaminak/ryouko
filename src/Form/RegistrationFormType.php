@@ -14,27 +14,44 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('nom')
-            ->add('prenom')
+            ->add('username', TextType::class, [
+                'label' => ' ',
+            ])
+            ->add('email', TextType::class, [
+                'label' => ' ',
+            ])
+            ->add('nom', TextType::class, [
+                'label' => ' ',
+            ])
+            ->add('prenom', TextType::class, [
+                'label' => ' ',
+            ])
             ->add('civilite', ChoiceType::class, [
+                'label' => ' ',
                 // 'mapped' => false,
                 'choices'  => [
                     'Madame' => "madame",
                     'Monsieur' => "monsieur",                   
                 ],
             ])
-            ->add('adresse')
-            ->add('codePostal')
-            ->add('ville')
+            ->add('adresse', TextType::class, [
+                'label' => ' ',
+            ])
+            ->add('codePostal', TextType::class, [
+                'label' => ' ',
+            ])
+            ->add('ville', TextType::class, [
+                'label' => ' ',
+            ])
             ->add('avatar', FileType::class, [
+                'label' => 'Choose an avatar',
                 'mapped' => false,
                 "constraints" => [
                     new File([
@@ -54,6 +71,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
+                'label' => ' ',
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,

@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Symfony!</title>
+    </head>
+    <body>
+        
+        {% if pay.id == 5 %}
+<div class="container">
+    <div class="row ">
+        <div class="col-sm fleur1 ms-5">
+        <img class="fit-picture2 ms-5" width="170"
+        src="/images/gallery/sakura2.png"
+        alt="sakura" >
+        </div> 
+        <div class="col-sm card-title-categorie justify-content-center mt-5 me-5">
+                <h2 class="card-title-bis fw-bolder fst-italic">{{ categorie.categorie }}</h2>
+        </div>
+        <div class="col-sm fleur2 ms-5">
+                <img class="fit-picture3 ms-5" width="170"
+                src="/images/gallery/sakura2.png"
+                alt="sakura" >
+        </div>
+    </div>
+        <div class="col-sm fleur ">
+            <img class="fit-picture" width="50"
+             src="/images/gallery/sakura1.png"
+             alt="sakura">
+            <img class="fit-picture ms-5" width="50"
+            src="/images/gallery/sakura1.png"
+            alt="sakura" >
+        </div>
+    </div>
+</div> 
+
+<ol><li class="pat-jap"><h2>{{ categorie.intitule }}</h2></li>
+</ol>
+
+<div class="card-patisserie mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="/images/gallery/dorayaki.jpg" class="card-img" alt="dorayaki">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body-patisserie">
+        <h5 class="card-title-patisserie">Card title</h5>
+        <p class="card-text-patisserie">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text-patisserie"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endif %}
+
+  
+    </body>
+</html>

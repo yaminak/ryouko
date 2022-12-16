@@ -102,7 +102,7 @@ button:hover {
 .card-body {
   background: rgb(23, 21, 21);
   text-align: justify;
-  box-shadow: 5px 5px 15px rgba(63, 62, 62, 0.9);
+  box-shadow: 7px 7px 17px rgba(63, 62, 62, 0.9);
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
@@ -129,4 +129,46 @@ button:hover {
   color: #f4f2ef;
   font-size: 1.5rem;
   padding-bottom: 25px;
+}
+.fit-picture3 {
+  transform: rotate(-85deg);
+  margin-top: 18px;
+}
+.card-title-categorie {
+  margin-top: 15px;
+  margin-left: 57px;
+  width: 85%;
+  height: 80px;
+  background: rgb(23, 21, 21);
+  box-shadow: 7px 7px 17px rgba(#fcd2dc, 0.9);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.card-title-bis {
+  padding-top: 15px;
+  color: #fcd2dc;
+  text-align: center;
+}
+.fit-picture2 {
+  transform: rotate(-190deg);
+}
+.fleur1 {
+  margin-right: -59px;
+}
+.fleur {
+  width: 50%;
+  margin: auto;
+  margin-right: 105px;
+}
+
+.pat-jap {
+  list-style-type: square;
+  margin-top: 210px;
+  margin-left: 125px;
+  color: rgb(82, 78, 78);
+}
+.card-patisserie {
+  width: 1600px;
+  margin: auto;
+  height: 350px;
 }
