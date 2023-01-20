@@ -1,35 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<header>
-        <div class="ms-5" style="width: 1800px;">
-                                <img src="images/gallery/arbre.jpg" class="img-fluid mb-5" alt="">
-                        </div>
-</header>
-<main>
-        <div class="container text-center mt-5 py-5">
-                <div class="row gy-5 mt-5 pb-5 me-5">
-        {% if categorie is not null %}
-        {% for hobby in categorie.hobbies %}
+	<header>
+		<div class="ms-5" style="width: 1800px;">
+			<img src="images/gallery/arbre.jpg" class="img-fluid mb-5" alt="">
+		</div>
+	</header>
+	<main>
+		<div class="container text-center mt-5 py-5">
+			<div class="row gy-5 mt-5 pb-5 me-5">
+				{% if categorie is not null %}
+					{% for hobby in categorie.hobbies %}
 
-        <div class="col-6 me-auto">
-                        <img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
-        </div>
-        <div class="col-6">
-        <div class="p-3 border border-primary border-3 bg-transparent ms-5 mt-5 px-5">
-                <h1 class="titre_home fst-italic fw-bolder" style="color: #0b2764">{{ hobby.pays.nom}}</h1>
-                <p>{{ hobby.pays.description}}</p>
-        </div>
-        </div>
+						<div class="col-6 me-auto" style="width: 40%;">
+							<img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
+						</div>
+						<div class="col-6">
+							<div class="p-3 border border-primary border-3 bg-transparent ms-5 mt-5 px-5">
+								<h1 class="titre_home fst-italic fw-bolder" style="color: #0b2764">{{ hobby.pays.nom}}</h1>
+								<p>{{ hobby.pays.description}}</p>
+							</div>
+						</div>
 
-{% endfor %}
-        {% else %}
-        pas de resultat
-{% endif %}
-                </div>
-        </div>
-</main>
+					{% endfor %}
+				{% else %}
+					pas de resultat
+				{% endif %}
+			</div>
+		</div>
+	</main>
 
 {% endblock %}

@@ -93,10 +93,11 @@ class PaysController extends AbstractController
         {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
+        
 
         return $this->renderForm('pays/show.html.twig', [
             'pay' => $pay,
-            'form' => $form,
+            'formCommentaire' => $form,
         ]);
         
     

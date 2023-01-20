@@ -50,7 +50,7 @@ class CommentaireController extends AbstractController
      * @Route("/{id}", name="app_commentaire_show", methods={"GET"})
      */
     public function show(Commentaire $commentaire): Response
-    {
+    {       
         return $this->render('commentaire/show.html.twig', [
             'commentaire' => $commentaire,
         ]);

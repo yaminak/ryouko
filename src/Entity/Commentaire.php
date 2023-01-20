@@ -35,14 +35,10 @@ class Commentaire
     private $pays;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", length=1, nullable=true)
      */
-    private $likes;
+    private $rating;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $dislikes;
 
     
 
@@ -87,29 +83,16 @@ class Commentaire
         return $this;
     }
 
-    public function getLikes(): ?int
+    public function getRating(): ?int
     {
-        return $this->likes;
+        return $this->rating;
     }
 
-    public function setLikes(?int $likes): self
+    public function setRating(?int $rating): self
     {
-        $this->likes = $likes;
+        $this->rating = $rating;
 
         return $this;
     }
 
-    public function getDislikes(): ?int
-    {
-        return $this->dislikes;
-    }
-
-    public function setDislikes(?int $dislikes): self
-    {
-        $this->dislikes = $dislikes;
-
-        return $this;
-    }
-
-   
 }
