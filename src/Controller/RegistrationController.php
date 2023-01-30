@@ -12,6 +12,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +38,22 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fichier = $form->get("avatar")->getData();
+            if( $fichier ){
+                // on récupère le nom du fichier 
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                // La classe AsciiSlugger va remplacer les caractères spéciaux par des caractères autorisés dans les URL
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                // La fonction PHP 'uniquid' va générer un string unique sur le serveur
+                $nomFichier .= "_" . uniqid();
+                // on rajoute l'extension du nom de fichier original
+                $nomFichier .= "." . $fichier->guessExtension();
+                // on copie le fichier dans le dossier public/images avec le nouveau nom de fichier 
+                $fichier->move("images", $nomFichier);
+
+                $user->setAvatar($nomFichier);
+            }
             // encode the plain password
             $user->setPassword(
             $userPasswordHasher->hashPassword(
@@ -51,7 +68,7 @@ class RegistrationController extends AbstractController
 
         
             // TODO: in a real app, send this as an email!
-            $this->addFlash('success', 'A verification email was sent - please click it to enable your
+            $this->addFlash('success', 'A verification email was sent to your email address - please click it to enable your
             account before logging in.');
 
 

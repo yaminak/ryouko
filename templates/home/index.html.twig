@@ -16,12 +16,14 @@
 					{% for hobby in categorie.hobbies %}
 
 						<div class="col-6 me-auto" style="width: 40%;">
-							<img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}">
+							<a href="{{path('app_pays_show', {id:hobby.pays.id}) }}"><img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}"></a>
 						</div>
 						<div class="col-6">
 							<div class="p-3 border border-primary border-3 bg-transparent ms-5 mt-5 px-5">
-								<h1 class="titre_home fst-italic fw-bolder" style="color: #0b2764">{{ hobby.pays.nom}}</h1>
-								<p>{{ hobby.pays.description}}</p>
+								<a href="{{path('app_pays_show', {id:hobby.pays.id}) }}">
+									<h1 class="titre_home fst-italic fw-bolder" style="color: #0b2764">{{ hobby.pays.nom}}</h1>
+									<p class="text-light">{{ hobby.pays.description}}</p>
+								</a>
 							</div>
 						</div>
 

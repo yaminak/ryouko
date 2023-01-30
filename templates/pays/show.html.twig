@@ -4,259 +4,195 @@
 
 {% block body %}
 
-
-	<div class="card mb-3 bg-transparent text-center mx-auto" style="max-width: 70rem;">
-		<img src="{{ asset("images/" ~ pay.paysage ) }}" alt="{{ pay.nom }}">
-	</div>
-	<div class="card mx-auto bg-transparent mb-5 pb-5 pt-3" style="max-width: 70rem;">
-		<div class="row g-0">
-			<div class="col-md-6 mx-auto mt-5" style="max-width: 9rem;">
-				<img src="{{ asset("images/" ~ pay.drapeau ) }}" class="img-fluid rounded-start" alt="{{ pay.nom }}">
-			</div>
-			<div class="col-md-6 mt-4">
-				<div class="card-body bg-transparent">
-					<h1 class="card-title fw-bolder fst-italic mb-3 text-center">{{ pay.nom }}</h1>
-					<li class="list-group-item">
-						<strong class="pays-infos">Nombre de population :</strong>
-						{{ pay.population }}
-						Millions d'habitants</li>
-					<li class="list-group-item">
-						<strong class="pays-infos">Superficie du pays :</strong>
-						{{ pay.superficie }}
-						Km²
-					</li>
-					<li class="list-group-item">
-						<strong class="pays-infos">Langues :</strong>
-						{{ pay.langues }}
-					</li>
-				</div>
-			</div>
-			<p class="lh-base text-center mt-5">{{ pay.description }}</p>
-		</div>
-	</div>
-
-
 	<main>
-		<div class="card-deck" style="position: relative">
-			<div class="flex-row">
-				<div class="d-flex justify-content-evenly row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-5 g-3">
-					{% for hobby in pay.hobbies %}
-						{% if hobby.categorie.categorie != "home" %}
-							<div class="card h-80 shadow-sm text-dark bg-light mb-3 rgb" data-tilt data-tilt-scale="0.8">
-								<img class="image" src="{{ asset("images/" ~ hobby.photo) }}" alt="{{ hobby.loisir }}">
-								<div class="card-body">
-									<h5 class="card-title text-center fs-2 mb-3">
-										{{ hobby.categorie }}
-									</h5>
-									<p class="card-text text-center">
-										{{ hobby.categorie.description }}
-									</p>
-									<div class="lien text-center mt-5 mb-3">
-										<a href="{{ path('app_categorie_infos', {'pays': pay.id, 'id': hobby.categorie.id}) }}" class="btn btn-warning fs-5 text-secondary">See more ⇨</a>
-									</div>
-								</div>
-							</div>
-
-
-						{% endif %}
-					{% endfor %}
+		<section class="header_pays">
+			<div class="card mb-3 bg-transparent text-center mx-auto" style="max-width: 70rem;">
+				<img src="{{ asset("images/" ~ pay.paysage ) }}" alt="{{ pay.nom }}">
+			</div>
+			<div class="card mx-auto bg-transparent mb-5 pb-5 pt-3" style="max-width: 70rem;">
+				<div class="row g-0">
+					<div class="col-md-6 mx-auto mt-5" style="max-width: 9rem;">
+						<img src="{{ asset("images/" ~ pay.drapeau ) }}" class="img-fluid rounded-start" alt="{{ pay.nom }}">
+					</div>
+					<div class="col-md-6 mt-4">
+						<div class="card-body bg-transparent">
+							<h1 class="card-title fw-bolder fst-italic mb-3 text-center">{{ pay.nom }}</h1>
+							<li class="list-group-item">
+								<strong class="pays-infos">Nombre de population :</strong>
+								{{ pay.population }}
+								Millions d'habitants</li>
+							<li class="list-group-item">
+								<strong class="pays-infos">Superficie du pays :</strong>
+								{{ pay.superficie }}
+								Km²
+							</li>
+							<li class="list-group-item">
+								<strong class="pays-infos">Langues :</strong>
+								{{ pay.langues }}
+							</li>
+						</div>
+					</div>
+					<p class="lh-base text-center mt-5">{{ pay.description }}</p>
 				</div>
 			</div>
-		</div>
-	</main>
+		</section>
 
-	<section style="background-color: #000;">
-
-		<div class="container my-5 py-5">
-			<div class="row d-flex justify-content-center">
-				<div class="col-md-12 col-lg-10 col-xl-8">
-					<div class="card">
-						<div class="card-body-1 ms-4 mt-2">
-							<div class="d-flex flex-start align-items-center">
-
-								<img class="rounded-circle shadow-1-strong me-3" src="{{ asset(image_path ~ app.user.avatar)}}" alt="avatar" width="60" height="60"/>
-								<div>
-									<h5 class="fw-bold text-uppercase text-success mt-3 mb-1">{{ pay.nom }}</5>
-									<h6 class="fw-bold text-primary mb-1">{{ app.user.username }}</h6>
-									<p class="text-muted small mb-3">
-										Shared publicly - Dec 2022
-									</p>
-								</div>
-							</div>
-						</div>
-
-
-						<form id="form-{{pay.id}}">
-							{{ form_start(formCommentaire) }}
-							<div class="card-footer py-2 border-0" style="background-color: #f8f9fa; color:#000">
-								<div class="d-flex flex-start w-100">
-									<div class="form-outline w-100">
-										{{ form_widget(formCommentaire) }}
+		<section class="partie_cards">
+			<div class="card-deck" style="position: relative">
+				<div class="flex-row">
+					<div class="d-flex justify-content-evenly row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-5 g-3">
+						{% for hobby in pay.hobbies %}
+							{% if hobby.categorie.categorie != "home" %}
+								<div class="card h-80 shadow-sm text-dark bg-light mb-3 rgb" data-tilt data-tilt-scale="0.8">
+									<img class="image" src="{{ asset("images/" ~ hobby.photo) }}" alt="{{ hobby.loisir }}">
+									<div class="card-body">
+										<h5 class="card-title text-center fs-2 mb-3">
+											{{ hobby.categorie }}
+										</h5>
+										<p class="card-text text-center">
+											{{ hobby.categorie.description }}
+										</p>
+										<div class="lien text-center mt-5 mb-3">
+											<a href="{{ path('app_categorie_infos', {'pays': pay.id, 'id': hobby.categorie.id}) }}" class="btn btn-warning fs-5 text-secondary">See more ⇨</a>
+										</div>
 									</div>
 								</div>
-								{% if app.user %}
-									<div class="float-end mt-4 pt-1 mb-4">
-										<button class="btn btn-primary btn-sm">{{ button_label|default('Post Comment') }}</button>
-										<button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
 
+
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="text_coms">
+			<img class="arabesque_haut" src="{{ asset(image_path ~ 'arabesque.png' )}}" alt="">
+			<h1 class="title_com text-center text-uppercase">
+				If you're fancy it, you can leave your message here
+			</h1>
+			<img class="arabesque" src="{{ asset(image_path ~ 'arabesque.png' )}}" alt="">
+		</section>
+
+		<section class"gradient-custom1">
+			<div class="container my-5 py-5 mb-5">
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-12 col-lg-10 col-xl-8">
+						<div class="card">
+							<div class="card-body-1 ms-4 mt-2">
+								<h5 class="fw-bold text-uppercase text-success text-center mt-3 mb-1">{{ pay.nom }}
+								</h5>
+								{% if app.user %}
+									<div class="d-flex flex-start align-items-center">
+										<img class="rounded-circle shadow-1-strong me-3 mb-4" src="{{ asset(image_path ~ app.user.avatar)}}" alt="avatar" width="60" height="60"/>
+										<div>
+											<h6 class="fw-bold text-primary mb-1">{{ app.user.username }}</h6>
+											<p class="text-muted small mb-3">
+												Shared publicly - Dec 2022
+											</p>
+										</div>
 									</div>
 								{% else %}
-									<p class="alert alert-danger">
-										Connectez-vous et laissez un commentaire
-									</p>
+									<div>
+										<img class="rounded-circle shadow-1-strong me-3 mb-3" src="{{ asset(image_path ~ 'avartarN.jpeg' )}}" alt="avatar" width="60" height="60"/>
+									</div>
+									<div class="fw-bold text-italic text-primary" style="margin-bottom: 14px;">
+										Username
+									</div>
 								{% endif %}
+								<form "form" id="form-{{pay.id}}">
+									{{ form_start(formCommentaire) }}
+									<div class="card-footer-fond py-2 border-0 ms-3 me-3" style="background-color: #f8f9fa; color:#000">
+										<div class="d-flex flex-start w-100">
+											<div class="form-outline w-100">
+												{{ form_widget(formCommentaire) }}
+											</div>
+										</div>
+										{% if app.user %}
+											<div class="float-end mt-4 pt-1 mb-4">
+												<button class="btn btn-primary btn-sm">{{ button_label|default('Post Comment') }}</button>
+												<button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+											</div>
+										{% else %}
+											<p class="alert alert-warning text-center">
+												Connectez-vous et laissez votre commentaire
+											</p>
+											<div class="float-end mt-4 pt-1 mb-4">
+												<a href="{{ path('app_login') }}" class="btn btn-primary btn-sm">Se connecter
+												</a>
+											</div>
+										{% endif %}
+									</div>
+									{{ form_end(formCommentaire) }}
+								</form>
 							</div>
-							{{ form_end(formCommentaire) }}
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-12 col-lg-10 col-xl-8">
+					<div class="card mb-5">
+						<div class="card-body p4">
+							<div class="row">
+								<div class="col">
+									<div class="mb-3" id="card-comment">
+										{% for leCommentaire in pay.commentaires  |sort((a, b) => a.id <=> b.id)|reverse %}
+
+											<div class="card mb-4 rounded-3">
+												<div class="d-flex">
+													<div class="user d-flex flex-row align-items-center">
+														<img src="{{ asset(image_path ~ leCommentaire.user.avatar)}}" width="30" class="user-img rounded-circle ms-2 mr-2 mt-3 mb-3">
 
 
-	<script>
-		window.addEventListener("load", () => {
-$("#form-  {{ pay.id }}").on("submit", (evtSubmit) => {
-evtSubmit.preventDefault();
-console.log($("#form-  {{ pay.id }}[name='message']").val());
-$.ajax({
-url: "{{ path('app_commentaire_ajouter', {id: pay.id}) }}",
-method: "POST",
-data: "msg=" + $("#form-  {{ pay.id }}[name='commentaire[message]']").val(),
-dataType: "json",
-success: (getData) => {
-$("#card-comment").addClass('d-inline');
-$("#comment").html(getData);
-console.log("Data = " + getData);
-},
-error: (jqXHR, status, error) => {
-console.log("ERREUR AJAX", status, error);
-}
-});
-});
-});
-	</script>
+														<small class="d-flex justify-content-end fw-bold text-primary mb-1 ms-3">{{ leCommentaire.user.username }}
+														</small>
+													</div>
+													<small>2 days ago</small>
+												</div>
+												<div class="d-flex justify-content-center">
+													<a href="javascrip:void(0)" class="d-flex align-items-center ms-5 mb-3">
+														<i class="{% if leCommentaire.rating != 1 %} far {% else %}fa-solid {% endif %} fa-thumbs-up me-2"></i>
+														<p class="mb-0">Like</p>
+													</a>
+													<a href="javascrip:void(0)" class="d-flex align-items-center ms-4 mb-3">
+														<i class="{% if leCommentaire.rating != 2 %} far {% else %} fa-solid {% endif %} fa-thumbs-down me-2"></i>
+														<p class="mb-0">Dislike</p>
+													</a>
+													<a href="{{ path("app_commentaire_new") }}" class="d-flex align-items-center ms-4 mb-3">
+														<i class="far fa-comment-dots me-2"></i>
+														<p class="mb-0">Comment</p>
+													</a>
+												</div>
+												<p class="font-weight-bold text-dark ms-4 me-4">{{ leCommentaire.message }}
+												</p>
 
-	<div class="container mt-100 ">
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-12 col-lg-10 col-xl-8">
-				<div class="card-com mb-4">
-					<div class="card-header-com ms-4 mt-2">
-						<div class="media-com d-flex flex-start align-items-center">
-							<img class="rounded-circle shadow-1-strong me-3" src="{{ asset(image_path ~ app.user.avatar)}}" alt="avatar" width="60" height="60"/>
-							<span>
-								<div class="fw-bold text-primary mb-1 ms-3">{{ app.user.username }}</div>
-							</span>
+												<div class="small d-flex justify-content-end mt-5 mb-2 me-2">
+													<button type="button" class="btn btn-primary me-2 ">Reply</button>
+													{{ include('pays/_delete_form.html.twig') }}
+												</div>
+											</div>
 
-							{# </div> #}
 
-							<div class="text-muted small ml-3 flex-end">
-								<div class="text-muted small">13 days ago</div>
-								<div>Member since
-									<strong>01/1/2019</strong>
+										{% else %}
+
+											<p>no records found</p>
+
+										{% endfor %}
+									</div>
 								</div>
-								<div>
-									<strong>134</strong>
-									posts</div>
 							</div>
 						</div>
 					</div>
-					<div class="card-body-com">
-						<p class="mt-3 mb-4 pb-2 text-light" id="comment"></p>
-					</div>
-					<div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
-						<div class="small d-flex justify-content-start">
-							<a
-								href="javascrip:void(0)" class="d-flex align-items-center me-3">
-								{# <i class="{% if leCommentaire.rating != 1 %} far {% else %}fa-solid {% endif %} fa-thumbs-up   me-2"></i> #}
-								<p class="mb-0">Like</p>
-							</a>
-							<a
-								href="javascrip:void(0)" class="d-flex align-items-center me-3">
-								{# <i class="{% if leCommentaire.rating != 2 %} far {% else %} fa-solid {% endif %}  fa-thumbs-down me-2"></i> #}
-								<p class="mb-0">Dislike</p>
-							</a>
-						</div>
-
-						<small>2 days ago</small>
-						<div class="d-flex">
-							<button type="button" class="btn btn-primary me-3 ">Reply</button>
-							{{ include('pays/_delete_form.html.twig') }}
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
+		</section>
+
+</main>
+<section class="go_up">
+	<div class="position-relative">
+		<a href="#" class=" btn btn-primary position-absolute bottom-0 end-0 me-5 mb-5">Go Up ⇧</a>
 	</div>
-</div></div><div class="card mb-3 d-none" id="card-comment">
-<div class="d-flex justify-content-between align-items-center">
-	<div class="user d-flex flex-row align-items-center">
-		<img src="{{ asset(image_path ~ app.user.avatar)}}" width="30" class="user-img rounded-circle ms-2 mr-2">
-		<span>
-			<small class="fw-bold text-primary mb-1 ms-3">{{ app.user.username }}</small>
-		</span>
-		<p class="mt-3 mb-4 pb-2 text-dark" id="comment"></p>
-	</div>
-</div></div>{% for leCommentaire in pay.commentaires  |sort((a, b) => a.id <=> b.id)|reverse %}
-<div class="container ">
-	<div class="row  d-flex justify-content-center">
-		<div class="col-md-8">
-			<div class="headings d-flex justify-content-between align-items-center mb-3">
-				<div class="buttons">{# <span class="badge bg-white d-flex flex-row align-items-center">
-										                     {# <span class="text-primary">Comments "ON"</span> #}
-					{# <div class="form-check form-switch">
-										                       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>  
-										                     </div> #}
-					{# </span> #}
-				</div>
-			</div>
-
-			<div class="card mb-3">
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="user d-flex flex-row align-items-center">
-						<img src="{{ asset(image_path ~ leCommentaire.user.avatar)}}" width="30" class="user-img rounded-circle ms-2 mr-2">
-						<span>
-							<small class="fw-bold text-primary mb-1 ms-3">{{ leCommentaire.user.username }}</small>
-							<p class="font-weight-bold text-dark mb-1 ms-3">{{ leCommentaire.message }}</p>
-
-						</div>
-						<div class="small d-flex justify-content-start">
-							<a href="javascrip:void(0)" class="d-flex align-items-center me-3">
-								<i class="{% if leCommentaire.rating != 1 %} far {% else %}fa-solid {% endif %} fa-thumbs-up me-2"></i>
-								<p class="mb-0">Like</p>
-							</a>
-							<a href="javascrip:void(0)" class="d-flex align-items-center me-3">
-								<i class="{% if leCommentaire.rating != 2 %} far {% else %} fa-solid {% endif %} fa-thumbs-down me-2"></i>
-								<p class="mb-0">Dislike</p>
-							</a>
-							<a href="{{ path("app_commentaire_new") }}" class="d-flex align-items-center me-3">
-								<i class="far fa-comment-dots me-2"></i>
-								<p class="mb-0">Comment</p>
-							</a>
-
-						</div>
-
-						<small>2 days ago</small>
-						{{ include('pays/_delete_form.html.twig') }}
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-{% else %}
-	<tr>
-		<td colspan="3">no records found</td>
-	</tr>
-{% endfor %}
-
-
-{# <a href="{{ path('app_pays_index') }}">back to list</a>
-<a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a> #}
-<div class="position-relative">
-	<a href="#" class=" btn btn-primary position-absolute bottom-0 end-0 me-5 mb-5">Go Up ⇧</a>
-</div>{% endblock %}
+</section>
+{{ include("pays/show-ajax.html.twig") }}{% endblock %}

@@ -27,7 +27,7 @@
 									{% endif %}
 
 									<h2 class="fw-bold mb-2 text-primary fst-italic">LOGIN</h2>
-									<p class="text-white-50 mt-3 mb-5">Please enter your email and password!</p>
+									<p class="text-white-50 mt-3 mb-5">Please enter your email and password</p>
 
 									<div class="form-outline form-white mb-4">
 										<label for="inputEmail">Email</label>
@@ -41,7 +41,7 @@
 									<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 									<fieldset class="custom-control custom-switch">
 										<input type="checkbox" class="custom-control-input" id="remember_me_checkbox" name="_remember_me">
-										<label class="custom-control-label" for="remember_me_checkbox">
+										<label class="custom-control-label ms-2" for="remember_me_checkbox">
 											Remember me
 										</label>
 
@@ -65,7 +65,7 @@
 								</div>
 
 								<div>
-									{# <a href="{{path('app_reset_password')}}" class="btn btn-secondary mb-4">Mot de passe oublié</a> #}
+									<a href="{{path('app_reset_password')}}" class="btn btn-secondary mb-4">Mot de passe oublié</a>
 									<p class="mb-0">Don't have an account?
 										<a href="{{ path('app_register') }}" class="text-primary fw-bold">
 											<u>Sign Up</u>
@@ -84,4 +84,3 @@
 	</section>
 
 {% endblock %}
-

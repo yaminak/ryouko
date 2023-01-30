@@ -1,0 +1,25 @@
+<script>    
+			//
+		window.addEventListener("load", () => {
+			$("#form-{{ pay.id }}").on("submit", (evtSubmit) => {
+			  evtSubmit.preventDefault();
+			  console.log($("#form-{{ pay.id }} [name='message']").val());
+			  $.ajax({
+				url: "{{ path('app_commentaire_ajouter', {id: pay.id}) }}",
+				method: "POST",
+				data:
+				  "msg=" + $("#form-{{ pay.id }} [name='commentaire[message]']").val(),
+				dataType: "json",
+				success: (getData) => {
+				  $("#card-comment").removeClass("d-none");
+				  $("#comment").html(getData);
+				  console.log("Data = " + getData);
+				},
+				error: (jqXHR, status, error) => {
+				  console.log("ERREUR AJAX", status, error);
+				},
+			  });
+			});
+		  });
+</script>
+	

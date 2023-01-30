@@ -17,14 +17,21 @@
 
 								<h2 class="fw-bold mb-2 text-primary fst-italic">REGISTER</h2>
 
+								<p class="text-white-50 mt-3 mb-5">Please fill this form to register</p>
+
 								{{ form_start(registrationForm) }}
-                                {{ form_row(registrationForm.avatar) }}
-                                {{ form_row(registrationForm.username) }}
-								{{ form_row(registrationForm.email) }}
+								{{ form_row(registrationForm.avatar) }}
+								{{ form_row(registrationForm.username,  {
+									label: ' '
+								}) }}
+								{{ form_row(registrationForm.email,  {
+									label: ' '
+								}) }}
 								{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: ' '
         }) }}
-								{{ form_row(registrationForm.agreeTerms) }}
+								{{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'reg_check'}}) }}
+
 
 								<button class="rounded-pill border border-primary border border-3 mt-5" type="submit" class="btn">Register</button>
 								{{ form_end(registrationForm) }}

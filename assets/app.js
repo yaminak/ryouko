@@ -22,3 +22,5 @@ import "./js/vanilla-tilt.babel.min.js";
 
 const $ = require("jquery");
 global.$ = global.jQuery = $;
+
+
