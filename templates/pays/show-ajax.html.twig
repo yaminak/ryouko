@@ -1,20 +1,35 @@
 <script>    
-			//
+			/* appel à la méthode ajax qui va mettre en place le transfert de données vers la base de données 
+			 */
+			
+			// charger la page avant d'exécuter la méthode ajax
 		window.addEventListener("load", () => {
+			//il prend l'élément de l'id ci-dessous cité et il applique l'événement "on" sur le boutton submit de cet élément
 			$("#form-{{ pay.id }}").on("submit", (evtSubmit) => {
+				//cette méthode nous permert de ne pas applique le comportement habituel du bouton submit
 			  evtSubmit.preventDefault();
 			  console.log($("#form-{{ pay.id }} [name='message']").val());
+				//on applique la méthode ajax pour ce faire il faut des recettes
+				//url pour: envoyer la requête vers le serveur
+				//method "POST" est utilisée dans notre requête pour envoyer des données( si on ne précise pas c'est "GET" par défault)  
+				//data: ce sont les données des champs du formulaire dans notre cas un seul champ avec le nom suivant : "commentaire[message]" 
+				//datatype: retourne la réponse en format json
 			  $.ajax({
 				url: "{{ path('app_commentaire_ajouter', {id: pay.id}) }}",
 				method: "POST",
 				data:
 				  "msg=" + $("#form-{{ pay.id }} [name='commentaire[message]']").val(),
 				dataType: "json",
+				//success est une méthode de ajax qui permet de récupérer les données envoyés du serveur dans notre cas les données reçues sont inclues "getData"
 				success: (getData) => {
+					$("#form-{{ pay.id }} [name='commentaire[message]']").val('');
+				// on élimine la class "d-none" dans l'élément html contenant id="card-comment"
 				  $("#card-comment").removeClass("d-none");
+				  //on affiche getData soit les données récupérées du serveur dans l'élément html contenant id="comment"
 				  $("#comment").html(getData);
 				  console.log("Data = " + getData);
 				},
+				//en cas d'erreur, la méthode ajax "error" met en place le message d'erreur cité ci-dessous dans la console du navigateur 
 				error: (jqXHR, status, error) => {
 				  console.log("ERREUR AJAX", status, error);
 				},

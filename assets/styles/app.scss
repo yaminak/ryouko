@@ -28,21 +28,6 @@ thead {
   );
 }
 
-.gradient-custom1 {
-  /* fallback for old browsers */
-  background: rgb(0, 0, 3);
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right,
-    rgb(14, 13, 13),
-    rgb(95, 95, 95)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgb(14, 13, 13), rgb(95, 95, 95));
-}
-
 button {
   border: 0;
   background: transparent;
@@ -296,6 +281,10 @@ a {
 .reg_check {
   float: none !important;
   margin-right: 14px;
+}
+
+.title_com {
+  color: rgb(245, 209, 66);
 }
 
 .arabesque {

@@ -89,11 +89,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $resetPasswordRequest;
-
+   
 
 
     public function __construct()
@@ -324,17 +320,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getResetPasswordRequest(): ?string
-    {
-        return $this->resetPasswordRequest;
-    }
-
-    public function setResetPasswordRequest(?string $resetPasswordRequest): self
-    {
-        $this->resetPasswordRequest = $resetPasswordRequest;
-
-        return $this;
-    }
 
     
 }
