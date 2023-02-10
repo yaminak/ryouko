@@ -1537,6 +1537,11 @@ autoprefixer@^10.4.13:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
+axentix@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/axentix/-/axentix-2.2.1.tgz#066e03d9950033410f2ca3c3f8e219097aa21301"
+  integrity sha512-+QPbwLfC+zXvQ+gpCyT9lr4MKLg7THaMbmFubeRhbF99cw762zoOMfouNcl4aGtast2gDfK3qWhMtRA/vPC5fA==
+
 babel-loader@^8.2.5:
   version "8.3.0"
   resolved "https://registry.npmjs.org/babel-loader/-/babel-loader-8.3.0.tgz"
