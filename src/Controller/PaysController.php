@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Pays;
 use App\Entity\User;
 use App\Form\PaysType;
+use App\Entity\Annonces;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\PaysRepository;
 use App\Repository\HobbiesRepository;
+use App\Repository\AnnoncesRepository;
 use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,15 +90,17 @@ class PaysController extends AbstractController
     /**
      * @Route("/{id}", name="app_pays_show", methods={"GET"})
      */
-    public function show(Request $request, Pays $pay, PaysRepository $paysRepository, CommentaireRepository $commentaireRepository): Response
+    public function show(Request $request, Pays $pay, PaysRepository $paysRepository, CommentaireRepository $commentaireRepository, AnnoncesRepository $annoncesRepo): Response
     
         {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
-        
 
+        // $lastAnnonce = $annoncesRepo->findOneBy([],array('id'=>'DESC'),1);
+        $annonces = $annoncesRepo->findAll();
         return $this->renderForm('pays/show.html.twig', [
             'pay' => $pay,
+            'annonces' => $annonces,
             'formCommentaire' => $form,
         ]);
         

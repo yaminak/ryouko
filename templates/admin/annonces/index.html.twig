@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les annonces
+{% endblock %}
+
+{% block body %}
+	<h1>Gérer les annonces</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>titre</th>
+				<th>Date</th>
+				<th>Contenu</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for annonce in annonces %}
+				<tr>
+					<td>{{ annonce.id }}</td>
+					<td>{{ annonce.title }}</td>
+					<td>{{ annonce.createdAt|date }}</td>
+					<td>{{ annonce.content|raw }}</td>
+					<td class="text-center">
+						<a href="{{ path('admin_annonces_ajout') }}">Add</a>
+
+						<a href="{{ path('admin_annonces_modifier', {'id': annonce.id}) }}">Edit</a>
+						<a href="{{ path('admin_annonces_supprimer', {'id': annonce.id}) }}">Delete</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
