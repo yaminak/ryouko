@@ -14,3 +14,7 @@ fm_elfinder:
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
                         upload_deny: ['all']
                         upload_max_size: 2M
+<<<<<<< HEAD
+=======
+
+>>>>>>> b8b5664976d47d372577402203ebd783e53003ea

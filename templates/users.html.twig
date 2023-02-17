@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Profil de l'utilisateur
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.2.1/dist/axentix.min.css">
+	</head>
+
+	<link rel="stylesheet" href="./app.scss">
+
+	{% block stylesheets %}
+
+		{{ encore_entry_link_tags('app') }}
+
+	{% endblock %}
+	{# <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> #}
+</html></head><body class="layout with-sidenav">
+<header>
+	<nav class="navbar transparent text-blue bd-blue bd-b-solid bd-2">
+		<button class="btn rounded-1 white hide-md-up btn-small mr-2" data-target="main-sidenav">
+			Menu
+		</button>
+		{# <a href="#" target="_blank" class="navbar-brand">Axentix</a> #}
+		<div
+			class="navbar-menu mt-2 navbar-centered">
+			{# <a class="navbar-link active hide-sm-down" href="#">Link 1</a>
+																																																																																																																		<a class="navbar-link hide-sm-down" href="#">Link 2</a>
+																																																																																																																		<a class="navbar-link hide-sm-down" href="#">Link 3</a>
+																																																																																																																		<div id="navbar-dropdown" data-ax="dropdown" class="dropdown" data-dropdown-prevent-viewport="true">
+																																																																																																																			<a class="navbar-link" href="#" data-target="navbar-dropdown">Dropdown</a>
+																																																																																																																			<div class="dropdown-content white shadow-1 dropdown-right">
+																																																																																																																				<a class="dropdown-item" href="#">Item 1</a>
+																																																																																																																				<a class="dropdown-item" href="#">Item 2</a>
+																																																																																																																			</div>
+																																																																																																																		</div> #}
+
+			<nav class="navbar mt-3 mb-4 navbar-expand-lg navbar-dark">
+				<div class="container-fluid">
+					<a class="navbar-brand fw-italic me-5" href="{{ path('app_home') }}">Voyage Passion</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mx-5">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Pays
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									{% for pay in pays %}
+
+										<li>
+											<a class="dropdown-item" href="{{path('app_pays_show', {id:pay.id}) }}">{{ pay.nom }}</a>
+										</li>
+									{% endfor %}
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Les commentaires
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li>
+										<a class="dropdown-item" href="{{path('app_commentaire_index') }}">Voir tous les commentaires</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{path('app_commentaire_new') }}">Ajouter un commentaire</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Le photofolio
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li>
+										<a class="dropdown-item" href="/photofolio">voir les photos</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Mon compte
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+										<li class="nav-item">
+											<a class="nav-link" href="{{path('app_logout') }}">
+												Se déconnecter
+											</a>
+										</li>
+									{% else %}
+										<li class="nav-item">
+											<a class="dropdown-item" href="{{path('app_login') }}">
+												Se connecter
+											</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="{{path('app_register') }}">Créer un compte</a>
+										</li>
+
+									{% endif %}
+								</ul>
+							</li>
+							<li class="nav-item dropdown me-5">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Langues
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li>
+										<a class="dropdown-item" href="#">English</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#">Español</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#">日本語</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<form class="d-flex left ms-5">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-primary ps-3 pe-5" type="submit">Rechercher</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</nav>
+</header>
+<div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 sidenav-fixed white">
+	<div class="sidenav-header">
+		<img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo"/>
+	</div>
+	<a href="#" class="sidenav-link active">Mon profil</a>
+	<a href="#" class="sidenav-link">Mes annonces</a>
+</div>
+<main>
+	<!-- Code here the main content -->
+	<button data-target="example-sidenav" class="btn rounded-1 press amaranth dark-1 hide-md-up">
+		Open sidenav
+	</button>
+	{% block body %}{% endblock %}
+</main>
+<footer class="footer primary text-black">
+	<p>Voyage passion Copyright © 2023</p>
+</footer>
+{% block javascripts %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/axentix@2.2.1/dist/axentix.min.js"></script>
+<script>
+	var sidenav = new Sidenav('#example-sidenav');
+</script></body><div class="sidenav shadow-1 white" id="example-sidenav" data-ax="sidenav">

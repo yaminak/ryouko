@@ -172,6 +172,39 @@ class Categorie
 
   public function addCategory(self $category): self
   {
+<<<<<<< HEAD
+=======
+      return $this->categorie;
+  }
+
+  public function getSlug(): ?string
+  {
+      return $this->slug;
+  }
+
+  public function getParent(): ?self
+  {
+      return $this->parent;
+  }
+
+  public function setParent(?self $parent): self
+  {
+      $this->parent = $parent;
+
+      return $this;
+  }
+
+  /**
+   * @return Collection<int, self>
+   */
+  public function getCategories(): Collection
+  {
+      return $this->categories;
+  }
+
+  public function addCategory(self $category): self
+  {
+>>>>>>> b8b5664976d47d372577402203ebd783e53003ea
       if (!$this->categories->contains($category)) {
           $this->categories[] = $category;
           $category->setParent($this);
