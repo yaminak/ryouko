@@ -33,7 +33,7 @@ class UsersController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid()){
                 $annonce->setUser($this->getUser());
-                $annonce->setActive(false);
+               
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($annonce);

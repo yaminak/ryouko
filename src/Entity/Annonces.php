@@ -8,10 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
-<<<<<<< HEAD
  * @ORM\Table(name="annonces", indexes={@ORM\Index(columns={"title", "content"}, flags={"fulltext"})})
-=======
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
  */
 class Annonces
 {
@@ -39,30 +36,21 @@ class Annonces
     private $content;
 
     /**
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
-
-<<<<<<< HEAD
-=======
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $active;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
-
-    /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at; 
+ 
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -99,38 +87,6 @@ class Annonces
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-
-<<<<<<< HEAD
-=======
-    public function isActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
     public function getCategories(): ?Categorie
     {
         return $this->categories;
@@ -142,9 +98,18 @@ class Annonces
 
         return $this;
     }
-<<<<<<< HEAD
 
-    
-=======
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+
 }

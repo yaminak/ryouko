@@ -13,10 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
         "friendsofsymfony/ckeditor-bundle": "^2.4",
-<<<<<<< HEAD
         "gedmo/doctrine-extensions": "^3.11",
-=======
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
         "helios-ag/fm-elfinder-bundle": "^12.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.13",

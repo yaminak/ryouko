@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
+
     "content-hash": "eff352de3508a273b7f3d610f0cd1a6c",
-=======
+
     "content-hash": "30e30c0801831cabc119c642bf1e167c",
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
+
     "packages": [
         {
             "name": "antishov/doctrine-extensions-bundle",
@@ -1846,7 +1846,7 @@
         },
         {
             "name": "helios-ag/fm-elfinder-bundle",
-<<<<<<< HEAD
+
             "version": "12.2.3",
             "source": {
                 "type": "git",
@@ -1857,7 +1857,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/68a3b900a49894feaf5bf500c92376e5d1bc9925",
                 "reference": "68a3b900a49894feaf5bf500c92376e5d1bc9925",
-=======
+
             "version": "12.2.2",
             "source": {
                 "type": "git",
@@ -1868,7 +1868,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/8ad5ec8983f209d6a2795743b610c4aa53b3c774",
                 "reference": "8ad5ec8983f209d6a2795743b610c4aa53b3c774",
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
+
                 "shasum": ""
             },
             "require": {
@@ -1928,11 +1928,11 @@
             ],
             "support": {
                 "issues": "https://github.com/helios-ag/FMElfinderBundle/issues",
-<<<<<<< HEAD
+
                 "source": "https://github.com/helios-ag/FMElfinderBundle/tree/12.2.3"
-=======
+
                 "source": "https://github.com/helios-ag/FMElfinderBundle/tree/12.2.2"
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
+
             },
             "funding": [
                 {
@@ -1940,11 +1940,11 @@
                     "type": "custom"
                 }
             ],
-<<<<<<< HEAD
+
             "time": "2023-02-13T14:27:16+00:00"
-=======
+
             "time": "2023-01-28T10:26:32+00:00"
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
+
         },
         {
             "name": "laminas/laminas-code",

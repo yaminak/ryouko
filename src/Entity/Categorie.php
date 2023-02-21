@@ -132,29 +132,6 @@ class Categorie
     {
         return $this->description;
     }
-    
-  public function __toString()
-  {
-      return $this->categorie;
-  }
-
-  public function getSlug(): ?string
-  {
-      return $this->slug;
-  }
-
-  public function getParent(): ?self
-  {
-      return $this->parent;
-  }
-
-  public function setParent(?self $parent): self
-  {
-      $this->parent = $parent;
-
-      return $this;
-  }
-
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -162,98 +139,87 @@ class Categorie
         return $this;
     }
     
+    public function __toString()
+    {
+        return $this->categorie;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
     /**
-    * @return Collection<int, self>
-    */
-  public function getCategories(): Collection
-  {
-      return $this->categories;
-  }
+     * @return Collection<int, self>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
 
-  public function addCategory(self $category): self
-  {
-<<<<<<< HEAD
-=======
-      return $this->categorie;
-  }
+    public function addCategory(self $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setParent($this);
+        }
 
-  public function getSlug(): ?string
-  {
-      return $this->slug;
-  }
+        return $this;
+    }
 
-  public function getParent(): ?self
-  {
-      return $this->parent;
-  }
+    public function removeCategory(self $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getParent() === $this) {
+                $category->setParent(null);
+            }
+        }
 
-  public function setParent(?self $parent): self
-  {
-      $this->parent = $parent;
+        return $this;
+    }
 
-      return $this;
-  }
+    /**
+     * @return Collection<int, Annonces>
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
 
-  /**
-   * @return Collection<int, self>
-   */
-  public function getCategories(): Collection
-  {
-      return $this->categories;
-  }
+    public function addAnnonce(Annonces $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setCategories($this);
+        }
 
-  public function addCategory(self $category): self
-  {
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
-      if (!$this->categories->contains($category)) {
-          $this->categories[] = $category;
-          $category->setParent($this);
-      }
+        return $this;
+    }
 
-      return $this;
-  }
+    public function removeAnnonce(Annonces $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getCategories() === $this) {
+                $annonce->setCategories(null);
+            }
+        }
 
-  public function removeCategory(self $category): self
-  {
-      if ($this->categories->removeElement($category)) {
-          // set the owning side to null (unless already changed)
-          if ($category->getParent() === $this) {
-              $category->setParent(null);
-          }
-      }
-
-      return $this;
-  }
-
-  /**
-   * @return Collection<int, Annonces>
-   */
-  public function getAnnonces(): Collection
-  {
-      return $this->annonces;
-  }
-
-  public function addAnnonce(Annonces $annonce): self
-  {
-      if (!$this->annonces->contains($annonce)) {
-          $this->annonces[] = $annonce;
-          $annonce->setCategories($this);
-      }
-
-      return $this;
-  }
-
-  public function removeAnnonce(Annonces $annonce): self
-  {
-      if ($this->annonces->removeElement($annonce)) {
-          // set the owning side to null (unless already changed)
-          if ($annonce->getCategories() === $this) {
-              $annonce->setCategories(null);
-          }
-      }
-
-      return $this;
-  } 
+        return $this;
+    } 
 
   
 }

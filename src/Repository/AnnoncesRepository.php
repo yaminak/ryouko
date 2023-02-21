@@ -20,11 +20,6 @@ class AnnoncesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Annonces::class);
     }
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
     public function add(Annonces $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

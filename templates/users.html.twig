@@ -8,7 +8,6 @@
 			{% endblock %}
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.2.1/dist/axentix.min.css">
 	</head>
 
 	<link rel="stylesheet" href="./app.scss">
@@ -25,10 +24,8 @@
 		<button class="btn rounded-1 white hide-md-up btn-small mr-2" data-target="main-sidenav">
 			Menu
 		</button>
-		{# <a href="#" target="_blank" class="navbar-brand">Axentix</a> #}
-		<div
-			class="navbar-menu mt-2 navbar-centered">
-			{# <a class="navbar-link active hide-sm-down" href="#">Link 1</a>
+		
+			
 																																																																																																																		<a class="navbar-link hide-sm-down" href="#">Link 2</a>
 																																																																																																																		<a class="navbar-link hide-sm-down" href="#">Link 3</a>
 																																																																																																																		<div id="navbar-dropdown" data-ax="dropdown" class="dropdown" data-dropdown-prevent-viewport="true">
@@ -144,16 +141,11 @@
 </div>
 <main>
 	<!-- Code here the main content -->
-	<button data-target="example-sidenav" class="btn rounded-1 press amaranth dark-1 hide-md-up">
-		Open sidenav
-	</button>
+
 	{% block body %}{% endblock %}
 </main>
 <footer class="footer primary text-black">
 	<p>Voyage passion Copyright © 2023</p>
 </footer>
 {% block javascripts %}{% endblock %}
-<script src="https://cdn.jsdelivr.net/npm/axentix@2.2.1/dist/axentix.min.js"></script>
-<script>
-	var sidenav = new Sidenav('#example-sidenav');
-</script></body><div class="sidenav shadow-1 white" id="example-sidenav" data-ax="sidenav">
+

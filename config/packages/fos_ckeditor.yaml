@@ -9,8 +9,8 @@ fos_ck_editor:
             toolbar:
                 - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format', 'Font', 'FontSize', '-', 'TextColor', 'BGColor', 'Source'] }
             filebrowserBrowseRoute: elfinder  
-<<<<<<< HEAD
+
             filebrowserBrowseRouteParameters: [] 
-=======
+
             ilebrowserBrowseRouteParameters: [] 
->>>>>>> b8b5664976d47d372577402203ebd783e53003ea
+
