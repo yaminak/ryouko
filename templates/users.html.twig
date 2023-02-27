@@ -20,132 +20,84 @@
 	{# <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> #}
 </html></head><body class="layout with-sidenav">
 <header>
-	<nav class="navbar transparent text-blue bd-blue bd-b-solid bd-2">
-		<button class="btn rounded-1 white hide-md-up btn-small mr-2" data-target="main-sidenav">
-			Menu
-		</button>
-		
-			
-																																																																																																																		<a class="navbar-link hide-sm-down" href="#">Link 2</a>
-																																																																																																																		<a class="navbar-link hide-sm-down" href="#">Link 3</a>
-																																																																																																																		<div id="navbar-dropdown" data-ax="dropdown" class="dropdown" data-dropdown-prevent-viewport="true">
-																																																																																																																			<a class="navbar-link" href="#" data-target="navbar-dropdown">Dropdown</a>
-																																																																																																																			<div class="dropdown-content white shadow-1 dropdown-right">
-																																																																																																																				<a class="dropdown-item" href="#">Item 1</a>
-																																																																																																																				<a class="dropdown-item" href="#">Item 2</a>
-																																																																																																																			</div>
-																																																																																																																		</div> #}
-
-			<nav class="navbar mt-3 mb-4 navbar-expand-lg navbar-dark">
-				<div class="container-fluid">
-					<a class="navbar-brand fw-italic me-5" href="{{ path('app_home') }}">Voyage Passion</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav mx-5">
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Pays
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									{% for pay in pays %}
-
-										<li>
-											<a class="dropdown-item" href="{{path('app_pays_show', {id:pay.id}) }}">{{ pay.nom }}</a>
-										</li>
-									{% endfor %}
-								</ul>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Les commentaires
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li>
-										<a class="dropdown-item" href="{{path('app_commentaire_index') }}">Voir tous les commentaires</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="{{path('app_commentaire_new') }}">Ajouter un commentaire</a>
-									</li>
-								</ul>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Le photofolio
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li>
-										<a class="dropdown-item" href="/photofolio">voir les photos</a>
-									</li>
-								</ul>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Mon compte
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-										<li class="nav-item">
-											<a class="nav-link" href="{{path('app_logout') }}">
-												Se déconnecter
-											</a>
-										</li>
-									{% else %}
-										<li class="nav-item">
-											<a class="dropdown-item" href="{{path('app_login') }}">
-												Se connecter
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="{{path('app_register') }}">Créer un compte</a>
-										</li>
-
-									{% endif %}
-								</ul>
-							</li>
-							<li class="nav-item dropdown me-5">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Langues
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li>
-										<a class="dropdown-item" href="#">English</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Español</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">日本語</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<form class="d-flex left ms-5">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-primary ps-3 pe-5" type="submit">Rechercher</button>
-						</form>
-					</div>
-				</div>
-			</nav>
-
-		</div>
-	</nav>
+	{% block nav %}
+		{% include 'nav.html.twig' %}
+	{% endblock %}
 </header>
-<div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 sidenav-fixed white">
+{# <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 sidenav-fixed white">
 	<div class="sidenav-header">
 		<img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo"/>
 	</div>
 	<a href="#" class="sidenav-link active">Mon profil</a>
 	<a href="#" class="sidenav-link">Mes annonces</a>
-</div>
+</div> #}
+
+<!--Main Navigation-->
+<header>
+	<!-- Sidebar -->
+	<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+		<div class="position-sticky">
+			<div class="list-group list-group-flush mx-3 mt-4">
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+					<i class="fas fa-tachometer-alt fa-fw me-3"></i>
+					<span>Main dashboard</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+					<i class="fas fa-chart-area fa-fw me-3"></i>
+					<span>Webiste traffic</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-lock fa-fw me-3"></i>
+					<span>Password</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-chart-line fa-fw me-3"></i>
+					<span>Analytics</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-chart-pie fa-fw me-3"></i>
+					<span>SEO</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-chart-bar fa-fw me-3"></i>
+					<span>Orders</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-globe fa-fw me-3"></i>
+					<span>International</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-building fa-fw me-3"></i>
+					<span>Partners</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-calendar fa-fw me-3"></i>
+					<span>Calendar</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-users fa-fw me-3"></i>
+					<span>Users</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2 ripple">
+					<i class="fas fa-money-bill fa-fw me-3"></i>
+					<span>Sales</span>
+				</a>
+			</div>
+		</div>
+	</nav>
+	<!-- Sidebar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px;">
+	<div class="container pt-4"></div>
+</main>
+<!--Main layout-->
 <main>
 	<!-- Code here the main content -->
 
 	{% block body %}{% endblock %}
 </main>
-<footer class="footer primary text-black">
-	<p>Voyage passion Copyright © 2023</p>
-</footer>
-{% block javascripts %}{% endblock %}
 
+{% block javascripts %}{% endblock %}</body>

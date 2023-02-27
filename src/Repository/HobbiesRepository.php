@@ -49,6 +49,7 @@ class HobbiesRepository extends ServiceEntityRepository
         ;
     }
 
+
 //    /**
 //     * @return Hobbies[] Returns an array of Hobbies objects
 //     */

@@ -1,11 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}Password Reset Email Sent
+{% endblock %}
 
 {% block body %}
-    <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+	{# <p>
+																																							If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+																																																																									        This link will expire in
+																																							{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+																																						</p>
+																																						<p>If you don't receive an email please check your spam folder or
+																																							<a href="{{ path('app_forgot_password_request') }}">try again</a>.</p> #}
+
+
+	<!-- Button trigger modal -->
+	{# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+																																																Launch demo modal
+																																															</button> #}
+
+	<!-- Modal --><div class="modal-backdrop fade in"> </div>
+	<div class="modal in" id="MyModal" tabindex="-1" role="dialog" style="display:block; padding-right: 17px;">
+		<div class="modal-dialog  modal-dialog-centered">
+			<div class="modal-content bg-dark">
+				<div class="modal-header mx-5 my-5">
+					<h5 class="modal-title text-center text-light" id="exampleModalLabel">Confirm your e-mail address
+					</h5>
+				</div>
+				<body class="modal-open text-light mx-5 my-5" style="padding-right:17px;">
+					<p class="text-justify ps-4 pe-4">
+						If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.									This link will expire in
+						{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+					</p>
+					<p class="text-justify ps-4 pe-4">If you don't receive an email please check your spam folder or
+						<a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+				</body>
+				<div
+					class="modal-footer mx-5 pt-3 mt-5 mb-2">{# <button type="button" class="btn btn-primary" data-dismiss="modal">Close
+											</button> #}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% block footer %}{% endblock %}
+
 {% endblock %}

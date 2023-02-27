@@ -4,37 +4,45 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Gérer les annonces</h1>
+	<h1 class="titre_user text-center mt-5 mb-5">Gérer les annonces</h1>
+	<section class="intro">
+		<div class="mask d-flex align-items-center h-100 mx-5">
+			<div class="table-responsive mx-auto">
+				<table class="table table-dark table-bordered mb-0">
+					<thead class="text-center align-middle">
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">titre</th>
+							<th scope="col">Date</th>
+							<th scope="col">Contenu</th>
+							<th scope="col">actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for annonce in annonces %}
+							<tr>
+								<td>{{ annonce.id }}</td>
+								<td>{{ annonce.title }}</td>
+								<td>{{ annonce.createdAt|date }}</td>
+								<td>{{ annonce.content| raw }}</td>
+								<td class="text-center">
+									<a href="{{ path('admin_annonces_ajout') }}">Add</a>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>titre</th>
-				<th>Date</th>
-				<th>Contenu</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for annonce in annonces %}
-				<tr>
-					<td>{{ annonce.id }}</td>
-					<td>{{ annonce.title }}</td>
-					<td>{{ annonce.createdAt|date }}</td>
-					<td>{{ annonce.content|raw }}</td>
-					<td class="text-center">
-						<a href="{{ path('admin_annonces_ajout') }}">Add</a>
-
-						<a href="{{ path('admin_annonces_modifier', {'id': annonce.id}) }}">Edit</a>
-						<a href="{{ path('admin_annonces_supprimer', {'id': annonce.id}) }}">Delete</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+									<a href="{{ path('admin_annonces_modifier', {'id': annonce.id}) }}">Edit</a>
+									<a href="{{ path('admin_annonces_supprimer', {'id': annonce.id}) }}">Delete</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<button class="btn btn-dark mt-5 mb-5 ms-5">
+			<a href="{{ path('admin_annonces_ajout') }}">Create new</a>
+		</button>
+	</section>
 {% endblock %}

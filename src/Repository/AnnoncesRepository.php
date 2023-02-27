@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-
+ 
 use App\Entity\Annonces;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,6 +38,18 @@ class AnnoncesRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchAnnoncesByTag(string $value)
+    {
+        $query = $this->createQueryBuilder('a');
+        $query->orWhere('a.title like :val OR a.content like :val')       
+        ->leftJoin('a.categories', 'c', 'WITH','c.categorie like :val OR c.description like :val' ) 
+        ->setParameter('val', '%'.$value.'%');
+        
+        return $query->getQuery()
+              ->getResult()
+          ;
+
+    }
 //    /**
 //     * @return Annonces[] Returns an array of Annonces objects
 //     */

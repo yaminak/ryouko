@@ -15,7 +15,7 @@
 	</header>
 	<main>
 
-		<section class="container text-center mt-4 py-5">
+		<section class="container text-center mt-4 py-5" style="margin-right: 300px">
 			<div class="row gy-5 mt-5 pb-5 me-5">
 				{% if categorie is not null %}
 					{% for hobby in categorie.hobbies %}
@@ -24,7 +24,7 @@
 							<a href="{{path('app_pays_show', {id:hobby.pays.id}) }}"><img width="450" src="{{ asset("images/" ~ hobby.photo ) }}" alt="{{ hobby.pays.nom }}"></a>
 						</div>
 						<div class="col-6">
-							<div class="p-3 border border-primary border-3 bg-transparent ms-5 mt-5 px-5">
+							<div class="p-3 border-bleu border-3 bg-transparent ms-5 mt-5 px-5">
 								<a href="{{path('app_pays_show', {id:hobby.pays.id}) }}">
 									<h1 class="titre_home fst-italic fw-bolder" style="color: #0b2764">{{ hobby.pays.nom}}</h1>
 									<p class="text-light">{{ hobby.pays.description}}</p>
@@ -38,9 +38,9 @@
 			</div>
 		</section>
 
-		<section class="dark">
+		<section class="dark border border-white">
 			<div class="container py-4">
-				<h1 class="h1 text-center mt-5 mb-5" id="pageHeaderTitle">Les dernières annonces</h1>
+				<h1 class="h1 text-center mt-5 mb-5" id="pageHeaderTitle">Les derniers articles</h1>
 				<div class="row justify-content-evenly my-5 mx-5">
 					{% for annonce in annonces %}
 						<div class="card h-100 mb-5" style="width: 34rem;">
@@ -51,7 +51,7 @@
 											{{ annonce.title| raw }}</h5>
 
 										<p class="card-text">
-											{{ annonce.content|u.truncate(979) | raw }}</p>
+											{{ annonce.content|u.truncate(968, ' ...') | raw }}</p>
 										<a href="{{ path('app_annonces_index')}}#annonce-{{annonce.id}}" class="text-primary">Continue reading
 										</a>
 									</div>

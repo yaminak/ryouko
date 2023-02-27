@@ -43,12 +43,6 @@ class UserType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
     ])
             ->add('email')
-            ->add('civilite')
-            ->add('prenom')
-            ->add('nom')
-            ->add('adresse')
-            ->add('codePostal')
-            ->add('ville')
             // ->add('password', PasswordType::Class)
             // ->add('confirm_password', PasswordType::Class)
             

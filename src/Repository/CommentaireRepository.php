@@ -63,4 +63,18 @@ class CommentaireRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function searchCommentsByTag(string $value)
+{
+    $query = $this->createQueryBuilder('c');
+    $query->orWhere('c.message like :val')       
+    ->addSelect('p')
+    ->leftJoin('c.pays', 'p', 'WITH','p.nom like :val') 
+    ->setParameter('val', '%'.$value.'%');
+    
+    return $query->getQuery()
+          ->getResult()
+      ;
+
+}
 }

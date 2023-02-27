@@ -13,7 +13,6 @@ import "./styles/bootstrap-icons.css";
 import "./styles/glightbox.min.css";
 import "./styles/main.css";
 
-
 // start the Stimulus application
 // import './bootstrap';
 
@@ -21,6 +20,7 @@ import "./js/bootstrap.bundle.min.js";
 import "./js/main.js";
 import "./js/vanilla-tilt.babel.min.js";
 
-
 const $ = require("jquery");
 global.$ = global.jQuery = $;
+
+
