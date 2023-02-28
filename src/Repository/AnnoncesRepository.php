@@ -38,7 +38,7 @@ class AnnoncesRepository extends ServiceEntityRepository
         }
     }
 
-    public function searchAnnoncesByTag(string $value)
+    public function searchAnnoncesByTag($value)
     {
         $query = $this->createQueryBuilder('a');
         $query->orWhere('a.title like :val OR a.content like :val')       

@@ -31,16 +31,17 @@ class AnnoncesController extends AbstractController
     }
 
     /**
-     * @Route("/recherche/{tag}", name="app_annonces_recherche", methods={"GET"})
+     * @Route("/recherche", name="app_annonces_recherche", methods={"GET"})
      */
-    public function recherche(AnnoncesRepository $annoncesRepository, CommentaireRepository $cr, $tag): Response
+    public function recherche(Request $request, AnnoncesRepository $annoncesRepository, CommentaireRepository $cr): Response
     {
-        
+        $tag = $request->query->get('search');
         $searchAnnonce = $annoncesRepository->searchAnnoncesByTag($tag);
         $searchCom = $cr->searchCommentsByTag($tag);
-        dd($searchAnnonce, $searchCom);
-        return $this->render('annonces/index.html.twig', [
-            'annonces' => $annoncesRepository->findAll(),
+        // dd($searchAnnonce, $searchCom);
+        return $this->render('annonces/recherche.html.twig', [
+            'annonces' => $searchAnnonce,
+            'commentaires'=> $searchCom,
         ]);
     }
 

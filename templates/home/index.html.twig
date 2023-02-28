@@ -38,9 +38,10 @@
 			</div>
 		</section>
 
-		<section class="dark border border-white">
+		<section class="dark border border-white mb-5">
 			<div class="container py-4">
-				<h1 class="h1 text-center mt-5 mb-5" id="pageHeaderTitle">Les derniers articles</h1>
+				<h1 class="h1 text-center mt-5 mb-5" id="pageHeaderTitle">Les annonces du site
+				</h1>
 				<div class="row justify-content-evenly my-5 mx-5">
 					{% for annonce in annonces %}
 						<div class="card h-100 mb-5" style="width: 34rem;">
@@ -65,7 +66,50 @@
 			</div>
 		</section>
 
+		<section
+			class="container text-center mt-5 py-5" style="margin-right: 247px">
+
+			<!--Section heading-->
+			<h2 class="h1-responsive font-weight-bold text-center my-4 contact-form">Contact us</h2>
+			<!--Section description-->
+			<p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.</p>
+
+			<div
+				class="row">
+
+				<!--Grid column-->
+				<div class="col-md-9 mb-md-0 mb-5">
+					{{form(formulaire)}}
+
+						<div class="status"></div>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-md-3 text-center">
+						<ul class="list-unstyled mb-0">
+							<li>
+								<i class="fas fa-map-marker-alt fa-2x"></i>
+								<p>〒106-8514 東京都, 港区,南麻布,</p>
+								<p>4−11−44, JAPON</p>
+							</li>
+						</li>
+
+						<li>
+							<i class="fas fa-phone mt-4 fa-2x"></i>
+							<p>+ 81 23 45 67 89</p>
+						</li>
+
+						<li>
+							<i class="fas fa-envelope mt-4 fa-2x"></i>
+							<p>myaddress@yahoo.fr</p>
+						</li>
+					</ul>
+				</div>
+				<!--Grid column-->
+
+			</div>
+
+		</section>
 	</main>
-
-
 {% endblock %}

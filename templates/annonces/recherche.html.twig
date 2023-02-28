@@ -1,0 +1,19 @@
+{% block body %}
+	{% for annonce in annonces %}
+		<div>
+
+			{# <img src="{{ asset('uploads/images/annonces/' ~ annonce.images[0].name) }}" alt="{{ annonce.title }}"> #}
+		</div>
+		<div>
+			<h1>{{ annonce.title }}</h1>
+
+			<p>{{ annonce.content|raw }}</p>
+		</div>
+	{% endfor %}
+
+	{% for commentaire in commentaires %}
+
+		<p>{{ commentaire.message }}</p>
+
+	{% endfor %}
+{% endblock %}
