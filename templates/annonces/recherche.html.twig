@@ -1,19 +1,29 @@
 {% block body %}
-	{% for annonce in annonces %}
-		<div>
+	<div class="container">
+		<div class="raw text-center">
+			<h1 class="fs-1 text-primary fst-italic mt-5 mb-5">Partie des Articles</h1>
+			{% for annonce in annonces %}
 
-			{# <img src="{{ asset('uploads/images/annonces/' ~ annonce.images[0].name) }}" alt="{{ annonce.title }}"> #}
+				<div>
+					<h1 class="fs-6">{{ annonce.title }}</h1>
+
+					<p>{{ annonce.content|raw }}</p>
+				</div>
+			{% endfor %}
 		</div>
-		<div>
-			<h1>{{ annonce.title }}</h1>
-
-			<p>{{ annonce.content|raw }}</p>
+		<hr class="my-5">
+		<div class="raw text-center">
+			<h1 class="fs-1 text-primary fst-italic mb-5">Partie des commentaires</h1>
+			{% for commentaire in commentaires %}
+				<div class="mb-5">
+					<p class="font-weight-bold text-light ms-4 me-4">{{ commentaire.message }}
+					</p>
+					<p class="font-weight-bold text-light ms-4 me-4">
+						posté le
+						{{ commentaire.createdAT|date("m/d/Y H:i:s") }}
+					</p>
+					<hr>
+				</div>
+			{% endfor %}
 		</div>
-	{% endfor %}
-
-	{% for commentaire in commentaires %}
-
-		<p>{{ commentaire.message }}</p>
-
-	{% endfor %}
-{% endblock %}
+	{% endblock %}

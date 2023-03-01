@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Pays;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
+use App\Repository\HobbiesRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,11 @@ class CategorieController extends AbstractController
     /**
      * @Route("/", name="app_categorie_index", methods={"GET"})
      */
-    public function index(CategorieRepository $categorieRepository): Response
+    public function index(CategorieRepository $categorieRepository, HobbiesRepository $hobbiesRepository): Response
     {
         return $this->render('categorie/index.html.twig', [
             'categories' => $categorieRepository->findAll(),
+            'hobbies' => $hobbiesRepository->findAll(),
         ]);
     }
 
