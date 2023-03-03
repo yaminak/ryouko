@@ -19,19 +19,18 @@
 						{% endfor %}
 					</ul>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Les commentaires
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li>
-							<a class="dropdown-item" href="{{path('app_commentaire_index') }}">Voir tous les commentaires</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{path('app_commentaire_new') }}">Ajouter un commentaire</a>
-						</li>
-					</ul>
-				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Les commentaires
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_admin_commentaire') }}">Voir tous les commentaires</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Le photofolio

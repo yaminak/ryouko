@@ -183,6 +183,6 @@ class PaysController extends AbstractController
             $paysRepository->remove($pay, true);
         }
 
-        return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('pays/show.html.twig', [], Response::HTTP_SEE_OTHER);
     }
 }

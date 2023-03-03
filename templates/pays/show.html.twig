@@ -135,7 +135,7 @@
 		<div class="container" style="margin-right: 250px">
 			<div class="row justify-items-center">
 				<div class="col-md-12">
-					<section class="border-bottom mb-3">
+					<section class="mb-3">
 						<div class="row mb-4">
 							<div class="row">
 								<div class="mb-3">
@@ -193,10 +193,15 @@
 											</div>
 											<p class="font-weight-bold text-light ms-4 me-4">{{ leCommentaire.message }}
 											</p>
-											<div class="d-flex justify-content-start mt-5 mb-5">
+											<div class="d-flex justify-content-start mt-5 mb-5 relative">
 												<div class="small d-flex ms-5 me-3">
 													<button type="button" class="btn btn-outline-light bg-dark me-3 ">Reply</button>
-													{{ include('pays/_delete_form.html.twig') }}
+													{% if app.user == leCommentaire.user %}
+														<form method="post" action="{{ path('app_commentaire_delete', {'id': leCommentaire.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+															<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ leCommentaire.id) }}">
+															<button class="btn btn-outline-light bg-dark">Delete</button>
+														</form>
+													{% endif %}
 												</div>
 												<a href="javascrip:void(0)" class="d-flex align-items-center me-3">
 													<i class="{% if leCommentaire.rating != 1 %} far {% else %}fa-solid {% endif %} fa-thumbs-up me-2 text-primary"></i>
