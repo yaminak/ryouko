@@ -12,7 +12,7 @@ evtSubmit.preventDefault();
 // data: ce sont les données des champs du formulaire dans notre cas un seul champ avec le nom suivant : "commentaire[message]"
 // datatype: retourne la réponse en format json
 $.ajax({
-url: "{{ path('app_annonces_recherche') }}",
+url: "{{ path('app_articles_recherche') }}",
 data: "search=" + $("#form-search [name='search']").val(),
 dataType: "html",
 // success est une méthode de ajax qui permet de récupérer les données envoyés du serveur dans notre cas les données reçues sont inclues "getData"

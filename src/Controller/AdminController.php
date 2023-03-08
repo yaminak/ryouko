@@ -31,7 +31,6 @@ class AdminController extends AbstractController
      */
     public function ajoutCategorie(Request $request)
     {
-
         $categorie = new Categorie;
         $form = $this->createForm(CategoriesType::class, $categorie);
         $form->handleRequest($request);

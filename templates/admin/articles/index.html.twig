@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}Gérer les annonces
+{% block title %}Gérer les articles
 {% endblock %}
 
 {% block body %}
-	<h1 class="titre_user text-center mt-5 mb-5">Gérer les annonces</h1>
+	<h1 class="titre_user text-center mt-5 mb-5">Gérer les articles</h1>
 	<section class="intro">
 		<div class="mask d-flex align-items-center h-100 mx-5">
 			<div class="table-responsive mx-auto">
@@ -19,17 +19,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for annonce in annonces %}
+						{% for article in articles %}
 							<tr>
-								<td>{{ annonce.id }}</td>
-								<td>{{ annonce.title }}</td>
-								<td>{{ annonce.createdAt|date }}</td>
-								<td>{{ annonce.content| raw }}</td>
+								<td>{{ article.id }}</td>
+								<td>{{ article.title }}</td>
+								<td>{{ article.createdAt|date }}</td>
+								<td>{{ article.content| raw }}</td>
 								<td class="text-center">
-									<a href="{{ path('admin_annonces_ajout') }}">Add</a>
-
-									<a href="{{ path('admin_annonces_modifier', {'id': annonce.id}) }}">Edit</a>
-									<a href="{{ path('admin_annonces_supprimer', {'id': annonce.id}) }}">Delete</a>
+									<a href="{{ path('admin_articles_modifier', {'id': article.id}) }}">Edit</a>
+									<a href="{{ path('admin_articles_supprimer', {'id': article.id}) }}">Delete</a>
 								</td>
 							</tr>
 						{% else %}
@@ -42,7 +40,7 @@
 			</div>
 		</div>
 		<button class="btn btn-dark mt-5 mb-5 ms-5">
-			<a href="{{ path('admin_annonces_ajout') }}">Create new</a>
+			<a href="{{ path('admin_articles_ajout') }}">Create new</a>
 		</button>
 	</section>
 {% endblock %}

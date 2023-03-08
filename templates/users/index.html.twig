@@ -39,16 +39,16 @@
 			</div>
 
 			<div class="col-xs4 container">
-				<h5>Annonce(s) de
+				<h5>Article(s) de
 					{{app.user.prenom}}
 					{{app.user.nom}}
-					({{ app.user.annonces|length }})
+					({{ app.user.articles|length }})
 				</h5>
 
-				{% for annonce in app.user.annonces %}
+				{% for article in app.user.articles %}
 					<div class="col-xs1">Titre :
 					</div>
-					<div class="col-xs3">{{annonce.title}}
+					<div class="col-xs3">{{articles.title}}
 					</div>
 				{% endfor %}
 			</div>

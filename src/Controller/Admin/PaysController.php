@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Pays;
 use App\Entity\User;
@@ -20,7 +20,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/pays")
+ * @Route("admin/pays")
+ * @package App\Controller\Admin
  */
 class PaysController extends AbstractController
 {

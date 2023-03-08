@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommentaireController extends AbstractController
 {
     /**
-     * @Route("/", name="app_admin_commentaire", methods={"GET"})
+     * @Route("/", name="admin_commentaire_index", methods={"GET"})
      */
     public function index(CommentaireRepository $commentaireRepository): Response
     {
@@ -29,7 +29,7 @@ class CommentaireController extends AbstractController
 
     
     /**
-     * @Route("/show/{id}", name="app_admin_commentaire_show", methods={"GET"})
+     * @Route("/show/{id}", name="admin_commentaire_show", methods={"GET"})
      */
     public function show(Commentaire $commentaire): Response
     {       
@@ -40,7 +40,7 @@ class CommentaireController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="app_admin_commentaire_delete", methods={"POST"})
+     * @Route("/{id}", name="admin_commentaire_delete", methods={"POST"})
      */
     public function delete(Request $request, Commentaire $commentaire, CommentaireRepository $commentaireRepository): Response
     {

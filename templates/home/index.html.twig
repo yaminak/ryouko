@@ -6,14 +6,25 @@
 
 {% block body %}
 
-	{# {% include "components/_search_data.html.twig" with {form: form} only %} #}
 
 	<header>
-		<div class="ms-5" style="width: 1800px;">
-			<img src="images/gallery/arbre.jpg" class="img-fluid mb-5" alt="">
+		{# <div class="container"> #}
+		<div class="titre_central">
+			<img class="dandelion ms-5 rounded-3" src="{{ asset('images/dandelion.jpg') }}" width="1800" height="1250" alt="logo">
+			<h2>VOYAGE<svg class="mb-2" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-heart-pulse" viewbox="0 0 16 16">
+					<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z"/>
+					<path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
+				</svg>PASSION</h2>
+			<h1>Aller là où le vent nous emporte ...</h1>
 		</div>
+		{# </div> #}
 	</header>
+
 	<main>
+		<section class="bienvenue">
+			<h1>Welcome</h1>
+			<p>If you are considering getting futher informations about your next destination, you're in the good place, you will be faced with a multitude of options to choose between. However, there is one choice which you will need to make fairly quickly in your quest for the perfect experience you want to experiment all around the world.</p><br/>
+		</section>
 
 		<section class="container text-center mt-4 py-5" style="margin-right: 300px">
 			<div class="row gy-5 mt-5 pb-5 me-5">
@@ -26,7 +37,7 @@
 						<div class="col-6">
 							<div class="p-3 border-bleu border-3 bg-transparent ms-5 mt-5 px-5">
 								<a href="{{path('app_pays_show', {id:hobby.pays.id}) }}">
-									<h1 class="titre_home fst-italic fw-bolder" style="color: #0b2764">{{ hobby.pays.nom}}</h1>
+									<h1 class="titre_home fst-italic fw-bolder">{{ hobby.pays.nom}}</h1>
 									<p class="text-light">{{ hobby.pays.description}}</p>
 								</a>
 							</div>
@@ -40,20 +51,20 @@
 
 		<section class="dark border border-white mb-5">
 			<div class="container py-4">
-				<h1 class="h1 text-center mt-5 mb-5" id="pageHeaderTitle">Les annonces du site
+				<h1 class="h1 text-center mt-5 mb-5" id="pageHeaderTitle">Les articles du site
 				</h1>
 				<div class="row justify-content-evenly my-5 mx-5">
-					{% for annonce in annonces %}
+					{% for article in articles %}
 						<div class="card h-100 mb-5" style="width: 34rem;">
 							<div class="flex-row">
-								<div class="img-fluid bg-light p-3 image_annonce1">
+								<div class="img-fluid bg-light p-3 image_articles1">
 									<div class="card-body">
-										<h5 class="card-title-annonces">
-											{{ annonce.title| raw }}</h5>
+										<h5 class="card-title-articles">
+											{{ article.title| raw }}</h5>
 
 										<p class="card-text">
-											{{ annonce.content|u.truncate(968, ' ...') | raw }}</p>
-										<a href="{{ path('app_annonces_index')}}#annonce-{{annonce.id}}" class="text-primary">Continue reading
+											{{ article.content|u.truncate(968, ' ...') | raw }}</p>
+										<a href="{{ path('app_articles_index')}}#articles-{{article.id}}" class="text-primary">Continue reading
 										</a>
 									</div>
 								</div>

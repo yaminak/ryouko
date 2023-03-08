@@ -70,14 +70,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonces::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="user", orphanRemoval=true)
      */
-    private $annonces;
+    private $articles;
 
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
+        $this->articles = new ArrayCollection();
 
     }
 
@@ -256,35 +256,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Annonces>
+     * @return Collection<int, Articles>
      */
-    public function getAnnonces(): Collection
+    public function getArticles(): Collection
     {
-        return $this->annonces;
+        return $this->articles;
     }
 
-    public function addAnnonce(Annonces $annonce): self
+    public function addArticles(Articles $articles): self
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->setUser($this);
+        if (!$this->articles->contains($articles)) {
+            $this->articles[] = $articles;
+            $articles->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeAnnonce(Annonces $annonce): self
+    public function removeArticles(Articles $articles): self
     {
-        if ($this->annonces->removeElement($annonce)) {
+        if ($this->articles->removeElement($articles)) {
             // set the owning side to null (unless already changed)
-            if ($annonce->getUser() === $this) {
-                $annonce->setUser(null);
+            if ($articles->getUser() === $this) {
+                $articles->setUser(null);
             }
         }
 
         return $this;
     }
 
-
+    
     
 }

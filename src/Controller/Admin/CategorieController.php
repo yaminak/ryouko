@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategorieController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="index")
      */
     public function index(CategorieRepository $catRepo): Response
     {
@@ -71,5 +71,17 @@ class CategorieController extends AbstractController
         return $this->render('admin/categorie/ajout.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+    
+        /**
+     * @Route("/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
+            $categorieRepository->remove($categorie, true);
+        }
+
+        return $this->redirectToRoute('admin_categorie_index', [], Response::HTTP_SEE_OTHER);
     }
 }

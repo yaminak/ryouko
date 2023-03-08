@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Annonces;
+use App\Entity\Articles;
 use App\Entity\Categorie;
-use App\Form\AnnoncesType;
+use App\Form\ArticlesType;
 use App\Form\CategoriesType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,26 +53,26 @@ class AdminController extends AbstractController
     }
 
      /**
-     * @Route("/annonces/ajout", name="annonces_ajout")
+     * @Route("/articles/ajout", name="articles_ajout")
      */
-    public function ajoutAnnonce(Request $request)
+    public function ajoutArticles(Request $request)
     {
-        $annonce = new Annonces;
+        $articles = new Articles;
         
-        $form = $this->createForm(AnnoncesType::class, $annonce);
+        $form = $this->createForm(ArticlesType::class, $articles);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
-                $annonce->setUser($this->getUser());
+                $articles->setUser($this->getUser());
 
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($annonce);
+                $em->persist($articles);
                 $em->flush();
 
                 return $this->redirectToRoute('admin_home');
         }
         
-        return $this->render('admin/annonces/ajout.html.twig', [
+        return $this->render('admin/articles/ajout.html.twig', [
             'form' => $form->createView(),
         ]);
     }

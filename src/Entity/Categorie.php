@@ -57,15 +57,15 @@ class Categorie
     private $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonces::class, mappedBy="categories")
+     * @ORM\OneToMany(targetEntity=articles::class, mappedBy="categories")
      */
-    private $annonces;
+    private $articles;
 
     public function __construct()
     {
         $this->hobbies = new ArrayCollection();
         $this->categories = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
 
@@ -192,26 +192,26 @@ class Categorie
     }
 
     /**
-     * @return Collection<int, Annonces>
+     * @return Collection<int, articles>
      */
-    public function getAnnonces(): Collection
+    public function getarticles(): Collection
     {
-        return $this->annonces;
+        return $this->articles;
     }
 
-    public function addAnnonce(Annonces $annonce): self
+    public function addAnnonce(articles $annonce): self
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
+        if (!$this->articles->contains($annonce)) {
+            $this->articles[] = $annonce;
             $annonce->setCategories($this);
         }
 
         return $this;
     }
 
-    public function removeAnnonce(Annonces $annonce): self
+    public function removeAnnonce(articles $annonce): self
     {
-        if ($this->annonces->removeElement($annonce)) {
+        if ($this->articles->removeElement($annonce)) {
             // set the owning side to null (unless already changed)
             if ($annonce->getCategories() === $this) {
                 $annonce->setCategories(null);

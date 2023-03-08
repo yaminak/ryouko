@@ -7,7 +7,7 @@ namespace App\Form;
 use App\Entity\User;
 
 
-use App\Entity\Annonces;
+use App\Entity\Articles;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -18,7 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class AnnoncesType extends AbstractType
+class ArticlesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -35,7 +35,7 @@ class AnnoncesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Annonces::class,
+            'data_class' => Articles::class,
         ]);
     }
 }

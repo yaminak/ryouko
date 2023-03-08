@@ -1,0 +1,53 @@
+{% extends './admin.html.twig' %}
+
+{% block title %}Profil de l'administrateur
+{% endblock %}
+
+{% block body %}
+
+	<section class="intro">
+		<h1 class="titre_user text-center mt-5 mb-5">Listes des utilisateurs</h1>
+		<div class="mask d-flex align-items-center h-100 mx-5">
+			<div class="table-responsive mx-auto">
+				<table class="table table-dark table-bordered mb-0">
+					<thead class="text-center align-middle">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">AVATAR</th>
+							<th scope="col">PSEUDO</th>
+							<th scope="col">ROLES</th>
+							<th scope="col">MOT DE PASSE</th>
+							<th scope="col">EMAIL</th>
+							<th scope="col">ACTION</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.id }}</td>
+								<td><img class="rounded-circle shadow-1-strong me-3" width="40" height="40" src="{{ asset(image_path ~ user.avatar)}}"/></td>
+								<td>{{ user.username }}</td>
+								<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+								<td>{{ user.password }}</td>
+								<td>{{ user.email }}</td>
+								<td>
+									<a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
+									<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<button class="btn btn-dark mt-5 mb-5 ms-5">
+			<a href="{{ path('admin_user_new') }}">Create new</a>
+		</button>
+	</section>
+
+
+{% endblock %}

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticlesRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
- * @ORM\Table(name="annonces", indexes={@ORM\Index(columns={"title", "content"}, flags={"fulltext"})})
+ * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @ORM\Table(name="articles", indexes={@ORM\Index(columns={"title", "content"}, flags={"fulltext"})})
  */
-class Annonces
+class Articles
 {
     /**
      * @ORM\Id
@@ -36,7 +36,7 @@ class Annonces
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;
@@ -45,7 +45,13 @@ class Annonces
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created_at; 
+    private $created_at;    
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
  
     public function __construct()
     {
@@ -110,6 +116,19 @@ class Annonces
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+    
 
 
 }

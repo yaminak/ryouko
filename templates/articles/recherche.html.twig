@@ -1,13 +1,13 @@
 {% block body %}
 	<div class="container">
 		<div class="raw text-center">
-			<h1 class="fs-1 text-primary fst-italic mt-5 mb-5">Partie des Articles</h1>
-			{% for annonce in annonces %}
+			<h1 class="fs-1 text-primary fst-italic mt-5 mb-5">Partie des articles</h1>
+			{% for article in articles %}
 
 				<div>
-					<h1 class="fs-6">{{ annonce.title }}</h1>
+					<h1 class="fs-6">{{ articles.title }}</h1>
 
-					<p>{{ annonce.content|raw }}</p>
+					<p>{{ articles.content|raw }}</p>
 				</div>
 			{% endfor %}
 		</div>

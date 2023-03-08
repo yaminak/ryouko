@@ -3,13 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
-// use App\Model\SearchData;
 use App\Form\ContactType;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
 use App\Repository\PhotosRepository;
 use App\Repository\HobbiesRepository;
-use App\Repository\AnnoncesRepository;
+use App\Repository\ArticlesRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -23,18 +22,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(CategorieRepository $cr, Request $request, AnnoncesRepository $annoncesRepo,  MailerInterface $mailer): Response
+    public function index(CategorieRepository $cr, Request $request, articlesRepository $articlesRepo,  MailerInterface $mailer): Response
     { 
-        
-        // $searchData = new SearchData();
-        // $form = $this->createForm(SearchType::class, $searchData);
-        // $form->handleRequest($request);
-
-        // if($form->isSubmitted() && $form->isValid()) {
-        //     dd($searchData);
-        // }
-
-        $annonces = $annoncesRepo->findAll();
+        $articles = $articlesRepo->findAll();
         $categorie = $cr->findOneByCategorieField('home');
 
         $form = $this->createForm(ContactType::class);
@@ -63,7 +53,7 @@ class HomeController extends AbstractController
 
     return $this->render('home/index.html.twig', [
         // 'form' => $form->createView(),
-        'annonces' => $annonces,
+        'articles' => $articles,
         'categorie' => $categorie,
         'formulaire' => $form->createView(),
         ]);

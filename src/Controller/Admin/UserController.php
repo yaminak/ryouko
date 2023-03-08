@@ -5,92 +5,127 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\EditProfileType;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
+/**
+* @Route("/admin/user", name="admin_user_")
+* @package App\Controller\Admin
+*/
 class UserController extends AbstractController
 {
     /**
-     * @Route("/admin/user", name="admin_categorie_")
+     * @Route("/", name="index", methods={"GET"})
      */
-    public function index()
+    public function index(UserRepository $userRepository): Response
     {
-        return $this->render('users/index.html.twig');
+        return $this->render('admin/user/index.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
     }
 
     /**
-     * @Route("/users/users/ajout", name="users_ajout")
+     * @Route("/new", name="new", methods={"GET", "POST"})
      */
-    public function ajoutAnnonce(Request $request, UserRepository $user)
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        $annonce = new Annonces;
-        
-        $form = $this->createForm(AnnoncesType::class, $annonce);
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
-                $annonce->setUser($this->getUser());
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($annonce);
-                $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fichier = $form->get("avatar")->getData();
+            if( $fichier ){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                $nomFichier .= "_" . uniqid();
+                $nomFichier .= "." . $fichier->guessExtension();
+                $fichier->move("images", $nomFichier);
+                $user->setAvatar($nomFichier);
+            }                 
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $userRepository->add($user, true);
 
-                return $this->redirectToRoute('users');
+            return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
-        
-        return $this->render('users/annonces/ajout.html.twig', [
-            'form' => $form->createView(),
+       
+
+            return $this->renderForm('admin/user/new.html.twig', [
+            'user' => $user,
+            'form' => $form,
         ]);
     }
 
-     /**
-     * @Route("/users/profil/modifier", name="users_profil_modifier")
+    /**
+     * @Route("/{id}/show", name="show", methods={"GET"})
      */
-    public function editProfile(Request $request)
+    public function show(User $user): Response
     {
-        $user = $this->getUser();
-        $form = $this->createForm(EditProfileType::class, $user);
-        $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
-                $this->addFlash('message', 'Profil mis à jour');
-                return $this->redirectToRoute('users');
-        }
-        
-        return $this->render('users/editprofile.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('admin/user/show.html.twig', [
+            'user' => $user,
         ]);
     }
 
-     /**
-     * @Route("/users/password/modifier", name="users_password_modifier")
+    /**
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      */
-    public function editPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if($request->isMethod('POST')) {
-            $em = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
 
-            //on vérifie si les 2 mots de passe sont identiques
-            if($request->request->get('pass') == $request->request->get('pass2')) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            if( $fichier = $form->get("avatar")->getData() ){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $slugger = new AsciiSlugger();
+                $nomFichier = $slugger->slug($nomFichier);
+                $nomFichier .= "_" . uniqid();
+                $nomFichier .= "." . $fichier->guessExtension();
+                $fichier->move("images", $nomFichier);
 
-                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
-                $em->flush();
-                $this->addFlash('message', 'Mot de passe mis à jour avec succès');
-                return $this->redirectToRoute('users');
-
-            }else{
-                $this->addFlash('error', 'Les deux mots de passe ne sont pas identiques');
+                if( $user->getAvatar() ){
+                    $fichier = $this->getParameter("image_directory") . $user->getAvatar();
+                    if( file_exists($fichier) ){
+                        unlink($fichier);
+                    } 
+                } 
+                $user->setAvatar($nomFichier); 
             }
+            
+                $userRepository->add($user, true);
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="delete",  methods={"POST"})
+     */
+    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $userRepository->remove($user, true);
         }
         
-        return $this->render('users/editpassword.html.twig');
+        return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
     
 }
