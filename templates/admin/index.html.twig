@@ -1,38 +1,165 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello AdminController!
+{% block title %}Tableau de bord d'adminstration
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
 
-	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
+	<div class="container mx-auto">
+		<h1 class="titre_dashboard text-center mb-5">Tableau de bord d'adminstration
+		</h1>
+		<section id="minimal-statistics">
+			<div class="row">
+				<div class="col-xl-3 col-sm-6 col-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body rounded-3">
+								<div class="media d-flex">
+									<div class="align-self-center my-3 mx-3">
+										<a href="{{ path('admin_user_index') }}" class=" text-light text-center">
+											<i class="fas fa-users fa-fw me-3"></i>
+										</a>
+										<span>Utilisateurs</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-sm-6 col-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body rounded-3">
+								<div class="media d-flex">
+									<div class="align-self-center my-3 mx-3">
+										<a href="{{ path('admin_commentaire_index') }}" class="text-light text-center">
+											<i class="fas fa-comments fa-fw me-3"></i>
+											<span>Commentaires</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-sm-6 col-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body rounded-3">
+								<div class="media d-flex">
+									<div class="align-self-center my-3 mx-3">
+										<a href="{{ path('admin_articles_index') }}" class="text-light text-center">
+											<i class="bi bi-archive fa-fw me-3"></i>
+											<span>Articles</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-xl-3 col-sm-6 col-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body rounded-3">
+								<div class="media d-flex">
+									<div class="align-self-center my-3 mx-3">
+										<a href="{{ path('admin_pays_index') }}" class="text-light text-center">
+											<i class="bi bi-globe fa-fw me-3"></i>
+											<span>Pays</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-sm-6 col-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body rounded-3">
+								<div class="media d-flex">
+									<div class="align-self-center my-3 mx-3">
+										<a href="#" class="text-light text-center">
+											<i class="fas fa-chart-bar fa-fw me-3"></i>
+											<span>Catégories</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-sm-6 col-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body rounded-3">
+								<div class="media d-flex">
+									<div class="align-self-center my-3 mx-3">
+										<a class="text-light text-center" href="{{path('app_logout') }}">
+											<i class="fa fa-sign-out fa-fw me-3"></i>
+											<span>Déconnexion</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ 'C:/xamppnew/htdocs/ryouko3/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ 'C:/xamppnew/htdocs/ryouko3/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a>
-				</code>
-			</li>
-		</ul>
+		<section id="stats-subtitle">
+			<div class="row mt-5">
+				<div class="col-12 mt-3 mb-1">
+					<h4 class="text-uppercase mt-5 mb-5 text-center">Statistique du site</h4>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xl-6 col-md-12">
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body cleartfix rounded-3">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-pencil primary font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body text-center mt-3">
+										<h4>Total des articles</h4>
+										<h1>{{ articles | length }}</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-6 col-md-12">
+
+					<div class="card bg-dark">
+						<div class="card-content1">
+							<div class="card-body cleartfix rounded-3">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body text-center mt-3">
+										<h4>Total des commentaires</h4>
+									</div>
+
+									<div class="align-self-center text-center mt-3">
+										<h1>{{ commentaires | length }}</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
 	</div>
 {% endblock %}

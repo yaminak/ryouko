@@ -49,7 +49,7 @@ class CommentaireController extends AbstractController
             $commentaireRepository->remove($commentaire, true);
         }
 
-        return $this->redirectToRoute('app_admin_commentaire', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_commentaire_index', [], Response::HTTP_SEE_OTHER);
     }
 
 }

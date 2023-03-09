@@ -1,21 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}Commentaire{% endblock %}
+{% block title %}Commentaire
+{% endblock %}
 
 {% block body %}
-    <h1>Commentaire</h1>
+	<div class="container">
+		<h1 class="titre_user1 text-center mt-5 mb-5">Commentaire</h1>
+		<table class="table table-dark table-hover">
+			<tbody class="text-center"></tbody>
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ commentaire.id }}</td>
+				</tr>
+				<tr>
+					<th>Message</th>
+					<td>{{ commentaire.message }}</td>
+				</tr>
+			</tbody>
+		</table>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ commentaire.id }}</td>
-            </tr>
-            <tr>
-                <th>Message</th>
-                <td>{{ commentaire.message }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-{% endblock %}
+	{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="titre_pays1 text-center mt-5 mb-5">Fiche du pays</h1>
+		<table class="table table-dark table-hover">
+			<tbody class="text-center">
+				<tr>
+					<th>Id</th>
+					<td>{{ pay.id }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ pay.nom }}</td>
+				</tr>
+				<tr>
+					<th>Drapeau</th>
+					<td><img class="shadow-4-strong me-3" width="60" height="60" alt="{{ pay.drapeau}}" src="{{ asset(image_path ~ pay.drapeau)}}"/></td>
+				</tr>
+				<tr>
+					<th>Population</th>
+					<td>{{ pay.population }} Millions d'habitants</td>
+				</tr>
+				<tr>
+					<th>Paysage</th>
+					<td><img class="shadow-4-strong me-3" width="60" height="60" alt="{{ pay.paysage}}" src="{{ asset(image_path ~ pay.paysage)}}"/></td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ pay.description }}</td>
+				</tr>
+				<tr>
+					<th>Superficie</th>
+					<td>{{ pay.superficie }}</td>
+				</tr>
+				<tr>
+					<th>Langues</th>
+					<td>{{ pay.langues }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('admin_pays_index') }}">back to list</a>
+
+		<a href="{{ path('admin_pays_edit', {'id': pay.id}) }}">edit</a>
+
+		{{ include('admin/pays/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

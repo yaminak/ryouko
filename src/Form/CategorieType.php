@@ -4,12 +4,12 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 
-use App\Form\CategorieType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CategorieType extends AbstractType
@@ -18,7 +18,9 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('intitule')
-            ->add('categorie')
+            ->add('categorie', EntityType::class, [
+                'class' => Categorie::class
+                ])
             ->add('description')
             ->add('intitule', TextType::class)
             ->add('Valider', SubmitType::class)

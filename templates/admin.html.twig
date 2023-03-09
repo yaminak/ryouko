@@ -55,12 +55,20 @@
 					<i class="bi bi-globe fa-fw me-3"></i>
 					<span>Pays</span>
 				</a>
-				<a href="#" class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
+				<a href="{{ path('admin_categorie_index') }}" class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
 					<i class="fas fa-chart-bar fa-fw me-3"></i>
 					<span>Catégories</span>
 				</a>
+				{% if is_granted('ROLE_ADMIN') %}
+					<a href="{{path('app_logout') }}" class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
+						<i class="fa fa-sign-out fa-fw me-3"></i>
+						<span>Déconnexion</span>
+					</a>
+				{% endif %}
 			</div>
 		</div>
+
+
 	</nav>
 	<!-- Sidebar -->
 </header>

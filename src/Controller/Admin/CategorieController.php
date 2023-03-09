@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
-use App\Form\CategoriesType;
+use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +34,7 @@ class CategorieController extends AbstractController
     {
 
         $categorie = new Categorie;
-        $form = $this->createForm(CategoriesType::class, $categorie);
+        $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid() ) {
@@ -42,7 +42,7 @@ class CategorieController extends AbstractController
             $em->persist($categorie);
             $em->flush();
 
-            return $this->redirectToRoute('admin_categorie_home');
+            return $this->redirectToRoute('admin_categorie_index');
 
         }
 
@@ -56,7 +56,7 @@ class CategorieController extends AbstractController
      */
     public function ModifCategorie(Categorie $categorie, Request $request)
     {
-        $form = $this->createForm(CategoriesType::class, $categorie);
+        $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid() ) {
@@ -64,7 +64,7 @@ class CategorieController extends AbstractController
             $em->persist($categorie);
             $em->flush();
 
-            return $this->redirectToRoute('admin_categorie_home');
+            return $this->redirectToRoute('admin_categorie_index');
 
         }
 

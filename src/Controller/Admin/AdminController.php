@@ -2,10 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Articles;
-use App\Entity\Categorie;
-use App\Form\ArticlesType;
-use App\Form\CategoriesType;
+use App\Entity\Pays;
+use App\Form\CommentaireType;
+use App\Repository\ArticlesRepository;
+use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,10 +21,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(CommentaireRepository $commentaireRepository, ArticlesRepository $articlesRepository): Response
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'commentaires' => $commentaireRepository->findAll(),
+            'articles' => $articlesRepository->findAll(),
         ]);
     }
 

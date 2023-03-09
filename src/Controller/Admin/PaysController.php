@@ -26,17 +26,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PaysController extends AbstractController
 {
     /**
-     * @Route("/", name="app_pays_index", methods={"GET"})
+     * @Route("/", name="admin_pays_index", methods={"GET"})
      */
     public function index(PaysRepository $paysRepository): Response
     {
-        return $this->render('pays/index.html.twig', [
+        return $this->render('admin/pays/index.html.twig', [
             'pays' => $paysRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="app_pays_new", methods={"GET", "POST"})
+     * @Route("/new", name="admin_pays_new", methods={"GET", "POST"})
      */
     public function new(Request $request, PaysRepository $paysRepository): Response
     {
@@ -79,17 +79,17 @@ class PaysController extends AbstractController
             }
             $paysRepository->add($pay, true);
 
-            return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_pays_index', [], Response::HTTP_SEE_OTHER);
         }
 
-            return $this->renderForm('pays/new.html.twig', [
+            return $this->renderForm('admin/pays/new.html.twig', [
             'pay' => $pay,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_pays_show", methods={"GET"})
+     * @Route("/{id}", name="admin_pays_show", methods={"GET"})
      */
     public function show(Request $request, Pays $pay, PaysRepository $paysRepository, CommentaireRepository $commentaireRepository, ArticlesRepository $articlesRepo): Response
     
@@ -99,7 +99,7 @@ class PaysController extends AbstractController
 
         // $lastAnnonce = $articlesRepo->findOneBy([],array('id'=>'DESC'),1);
         $articles = $articlesRepo->findAll();
-        return $this->renderForm('pays/show.html.twig', [
+        return $this->renderForm('admin/pays/show.html.twig', [
             'pay' => $pay,
             'articles' => $articles,
             'formCommentaire' => $form,
@@ -107,24 +107,9 @@ class PaysController extends AbstractController
         
     
     }
-    
-    /**
-     * @Route("/ajout_commentaire-pays-{id}", name="app_commentaire_ajouter", methods={"POST"})
-     */
-    public function ajouter(Pays $pay, Request $rq, CommentaireRepository $commentaireRepository, Session $session)
-    {
-        $message = $rq->request->get("msg");
-        $commentaire = new Commentaire();
-        $commentaire->setMessage($message);
-        $commentaire->setUser($this->getUser());
-        $commentaire->setPays($pay);
-        $commentaireRepository->add($commentaire, true);
-        
-        return $this->json($message);
-    }
 
     /**
-     * @Route("/{id}/edit", name="app_pays_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="admin_pays_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Pays $pay, PaysRepository $paysRepository): Response
     {
@@ -166,17 +151,17 @@ class PaysController extends AbstractController
             }
             $paysRepository->add($pay, true);
 
-            return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_pays_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pays/edit.html.twig', [
+        return $this->renderForm('admin/pays/edit.html.twig', [
             'pay' => $pay,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_pays_delete", methods={"POST"})
+     * @Route("/{id}", name="admin_pays_delete", methods={"POST"})
      */
     public function delete(Request $request, Pays $pay, PaysRepository $paysRepository): Response
     {
@@ -184,6 +169,6 @@ class PaysController extends AbstractController
             $paysRepository->remove($pay, true);
         }
 
-        return $this->redirectToRoute('pays/show.html.twig', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_pays_index', [], Response::HTTP_SEE_OTHER);
     }
 }

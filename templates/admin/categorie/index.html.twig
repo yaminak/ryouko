@@ -1,42 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Gérer les catégories
 {% endblock %}
 
 {% block body %}
-	<h1>Gérer les catégories</h1>
-
-	<table class="table striped">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Intitule</th>
-				<th>Categorie</th>
-				<th>Description</th>
-				<th>Parent</th>
-				<th>actions</th>
-			</tr>
+	<h1 class="titre_pays1 text-center mt-5 mb-5">Gérer les catégories</h1>
+	<section class="intro">
+		<div class="mask d-flex align-items-center h-100 mx-5">
+			<div class="table-responsive">
+				<table class="table table-dark table-bordered mb-0">
+					<thead class="text-center align-middle">
+						<tr>
+							<th>Id</th>
+							<th>Intitule</th>
+							<th>Categorie</th>
+							<th>Description</th>
+							<th>Parent</th>
+							<th>actions</th>
+						</tr>
+						{% for categorie in categories %}
+							<tr>
+								<td>{{ categorie.id }}</td>
+								<td>{{ categorie.intitule }}</td>
+								<td>{{ categorie.categorie }}</td>
+								<td>{{ categorie.parent }}</td>
+								<td>{{ categorie.description }}</td>
+								<td>
+									<a href="{{ path('admin_categorie_modifier', {'id': categorie.id}) }}">Edit</a>
+									<a href="{{ path('admin_categorie_delete', {'id': categorie.id}) }}">Delete</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">no records found</td>
+							</tr>
+						{% endfor %}
+					</thead>
+				</tbody>
+			</table>
 		</thead>
-		<tbody>
-			{% for categorie in categories %}
-				<tr>
-					<td>{{ categorie.id }}</td>
-					<td>{{ categorie.intitule }}</td>
-					<td>{{ categorie.categorie }}</td>
-					<td>{{ categorie.parent }}</td>
-					<td>{{ categorie.description }}</td>
-					<td>
-						<a href="{{ path('admin_categorie_ajout') }}">Add</a>
-						<a href="{{ path('admin_categorie_modifier', {'id': categorie.id}) }}">Edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('app_categorie_new') }}">Create new</a>
-{% endblock %}
+	</div>
+</div>
+<button class="btn btn-dark mt-5 mb-5 ms-5">
+	<a href="{{ path('admin_categorie_ajout') }}">Create new</a>
+</button></div></section>{% endblock %}

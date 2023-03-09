@@ -420,6 +420,18 @@ a {
   font-size: 4em;
 }
 
+.titre_pays1,
+.titre_user1,
+.titre_dashboard,
+.titre_article1,
+.titre_commentaire1,
+.titre_pays1,
+.titre_categorie1 {
+  font-family: "Pinyon Script", cursive;
+  color: rgb(255, 255, 255);
+  font-size: 4em;
+}
+
 body {
   background-color: #fbfbfb;
 }
@@ -529,4 +541,9 @@ body {
 .bienvenue p {
   text-align: justify;
   font-size: 1em;
+}
+
+//dashboard
+#minimal-statistics {
+  margin-left: 250px;
 }
