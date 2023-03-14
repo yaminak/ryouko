@@ -36,11 +36,11 @@ class ArticlesController extends AbstractController
     public function recherche(Request $request, ArticlesRepository $articlesRepository, CommentaireRepository $cr): Response
     {
         $tag = $request->query->get('search');
-        $searchAnnonce = $articlesRepository->searcharticlesByTag($tag);
+        $searchArticles = $articlesRepository->searchArticlesByTag($tag);
         $searchCom = $cr->searchCommentsByTag($tag);
         // dd($searchAnnonce, $searchCom);
         return $this->render('articles/recherche.html.twig', [
-            'articles' => $searchAnnonce,
+            'articles' => $searchArticles,
             'commentaires'=> $searchCom,
         ]);
     }

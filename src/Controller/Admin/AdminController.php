@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="index")
      */
     public function index(CommentaireRepository $commentaireRepository, ArticlesRepository $articlesRepository): Response
     {

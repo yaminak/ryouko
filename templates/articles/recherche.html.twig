@@ -1,13 +1,15 @@
 {% block body %}
+
+	<h1 class="ms-5 text-decoration-underline">Les Résultats :</h1>
 	<div class="container">
 		<div class="raw text-center">
 			<h1 class="fs-1 text-primary fst-italic mt-5 mb-5">Partie des articles</h1>
 			{% for article in articles %}
 
 				<div>
-					<h1 class="fs-6">{{ articles.title }}</h1>
+					<h1 class="fs-6">{{ article.title }}</h1>
 
-					<p>{{ articles.content|raw }}</p>
+					<p>{{ article.content|raw }}</p>
 				</div>
 			{% endfor %}
 		</div>

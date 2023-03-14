@@ -37,20 +37,5 @@
 					<a href="{{ path('users_password_modifier') }}">Modifier le mot de passe</a>
 				</button>
 			</div>
-
-			<div class="col-xs4 container">
-				<h5>Article(s) de
-					{{app.user.prenom}}
-					{{app.user.nom}}
-					({{ app.user.articles|length }})
-				</h5>
-
-				{% for article in app.user.articles %}
-					<div class="col-xs1">Titre :
-					</div>
-					<div class="col-xs3">{{articles.title}}
-					</div>
-				{% endfor %}
-			</div>
 		</div>
 	{% endblock %}

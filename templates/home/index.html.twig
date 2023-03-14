@@ -3,7 +3,6 @@
 {% block title %}Hello HomeController!
 {% endblock %}
 
-
 {% block body %}
 
 
@@ -21,9 +20,11 @@
 	</header>
 
 	<main>
-		<section class="bienvenue">
+		<section class="container bienvenue">
 			<h1>Welcome</h1>
-			<p>If you are considering getting futher informations about your next destination, you're in the good place, you will be faced with a multitude of options to choose between. However, there is one choice which you will need to make fairly quickly in your quest for the perfect experience you want to experiment all around the world.</p><br/>
+			<blockquote>
+				If you are considering getting futher informations about your next destination, you're in the good place, you will be faced with a multitude of options to choose between. However, there is one choice which you will need to make fairly quickly in your quest for the perfect experience you want to experiment all around the world.
+			</blockquote>
 		</section>
 
 		<section class="container text-center mt-4 py-5" style="margin-right: 300px">
@@ -37,7 +38,7 @@
 						<div class="col-6">
 							<div class="p-3 border-bleu border-3 bg-transparent ms-5 mt-5 px-5">
 								<a href="{{path('app_pays_show', {id:hobby.pays.id}) }}">
-									<h1 class="titre_home fst-italic fw-bolder">{{ hobby.pays.nom}}</h1>
+									<h1 class="titre_home2 fst-italic fw-bolder text-light">{{ hobby.pays.nom}}</h1>
 									<p class="text-light">{{ hobby.pays.description}}</p>
 								</a>
 							</div>

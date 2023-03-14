@@ -35,6 +35,48 @@
 				},
 			  });
 			});
+
+			function onClickBtnLike(event,link, likes)
+			{
+				event.preventDefault();
+				const urlLike = link.href;
+				const spanLikes = link.querySelector('span.js-'+likes);
+				const iconLike = link.querySelector('i.js-'+likes+'-icon');
+
+				$.ajax({
+					url: urlLike,
+					method: "POST",				 
+					success: (dataRetrieved) => {
+						spanLikes.textContent = dataRetrieved.likes;
+						if(iconLike.classList.contains("fa-solid")) {
+							iconLike.classList.replace("fa-solid", "far");
+						} else {
+							iconLike.classList.replace("far", "fa-solid");
+						}
+					},
+					error: (jqXHR, status, error) => {
+						if(status == 403)
+							window.alert("Vous ne pouvez pas réagire sur un commentaire si vous n'êtes pas connecté !", status, error);
+						else
+							window.alert("Une erreur s'est produite, réesayez !", status, error);
+					},
+				});
+			};
+
+			document.querySelectorAll('a.js-like').forEach(function(link){
+				link.addEventListener("click", (event) =>  { 
+					onClickBtnLike(event, link, "likes"); 
+				});
+			}); 			
+
+			document.querySelectorAll('a.js-disLike').forEach(function(link){
+				link.addEventListener("click", (event) =>  { 
+					onClickBtnLike(event, link, "disLikes");
+				});
+			}); 
 		  });
 </script>
+
+
 	
+

@@ -44,9 +44,9 @@
 </section>
 {% for article in articles %}
 
-	<h2 class="image_annonce text-primary mt-5">{{ article.title|raw }}</h2>
+	<h2 class="image_articles text-primary mt-5">{{ article.title|raw }}</h2>
 	<div class="container-fluid mx-auto mt-5" id="articles-{{article.id}}">
-		<div class="img-fluid shadow-2-strong mb-4 image_annonce">
+		<div class="img-fluid shadow-2-strong mb-4 image_articles">
 			{{article.createdAt| date }}
 		</br>
 	</br>

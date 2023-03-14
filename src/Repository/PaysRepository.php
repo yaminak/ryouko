@@ -38,6 +38,7 @@ class PaysRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
     public function findAll(): array
         {
             return $this->findBy([], ['nom' => 'ASC']);

@@ -82,7 +82,7 @@
 							<div class="card-body rounded-3">
 								<div class="media d-flex">
 									<div class="align-self-center my-3 mx-3">
-										<a href="#" class="text-light text-center">
+										<a href="{{ path('admin_categorie_index') }}" class="text-light text-center">
 											<i class="fas fa-chart-bar fa-fw me-3"></i>
 											<span>Catégories</span>
 										</a>
@@ -128,7 +128,7 @@
 										<i class="icon-pencil primary font-large-2 mr-2"></i>
 									</div>
 									<div class="media-body text-center mt-3">
-										<h4>Total des articles</h4>
+										<h4>Total des articles</h4>															
 										<h1>{{ articles | length }}</h1>
 									</div>
 								</div>
@@ -149,7 +149,6 @@
 									<div class="media-body text-center mt-3">
 										<h4>Total des commentaires</h4>
 									</div>
-
 									<div class="align-self-center text-center mt-3">
 										<h1>{{ commentaires | length }}</h1>
 									</div>

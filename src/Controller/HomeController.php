@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
@@ -22,7 +21,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(CategorieRepository $cr, Request $request, articlesRepository $articlesRepo,  MailerInterface $mailer): Response
+    public function index(CategorieRepository $cr, Request $request, ArticlesRepository $articlesRepo,  MailerInterface $mailer): Response
     { 
         $articles = $articlesRepo->findAll();
         $categorie = $cr->findOneByCategorieField('home');

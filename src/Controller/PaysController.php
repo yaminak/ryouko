@@ -101,6 +101,7 @@ class PaysController extends AbstractController
         return $this->renderForm('pays/show.html.twig', [
             'pay' => $pay,
             'articles' => $articles,
+            'commentaires' => $commentaireRepository->findAll(),
             'formCommentaire' => $form,
         ]);
         
@@ -121,6 +122,8 @@ class PaysController extends AbstractController
         
         return $this->json($message);
     }
+
+    
 
     /**
      * @Route("/{id}/edit", name="app_pays_edit", methods={"GET", "POST"})

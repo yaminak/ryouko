@@ -203,31 +203,55 @@
 														</form>
 													{% endif %}
 												</div>
-												<a href="javascrip:void(0)" class="d-flex align-items-center me-3">
-													<i class="{% if leCommentaire.rating != 1 %} far {% else %}fa-solid {% endif %} fa-thumbs-up me-2 text-primary"></i>
-													<p class="mb-0 text-light">Like</p>
-												</a>
-												<a href="javascrip:void(0)" class="d-flex align-items-center">
-													<i class="{% if leCommentaire.rating != 2 %} far {% else %} fa-solid {% endif %} fa-thumbs-down me-2 text-primary"></i>
-													<p class="mb-0 text-light">Dislike</p>
-												</a>
-											</div>
+												{# <a href="{{ path('app_commentaire_like', {'id': leCommentaire.id}) }}" method="post" class="d-flex align-items-center me-3 js-like ">
+
+													<i class="js-likes-icon fas fa-solid bi bi-hand-thumbs-up me-2 text-primary" {% if app.user and leCommentaire.isLikedByUser(app.user) %}></i>
+												{% else %}
+													<i class=" js-likes-icon far fa-solid fa-thumbs-up me-2 text-primary"></i>
+												{% endif %}
+												<span class="js-likes mb-0 text-light me-2">(
+													{{ leCommentaire.likes | length }}
+													)</span>
+												<span class="js-label mb-0 text-light">Like</span>
+											</a>
+											<a href="javascrip:void(0)" class="d-flex align-items-center">
+												<i class="fas-solid fa-thumbs-down me-2 text-primary"></i>
+												<p class="mb-0 text-light">Dislike</p>
+											</a> #}
+											<a href="{{ path('app_commentaire_like', { 'id' : leCommentaire.id })}}" class="d-flex align-items-center ms-5 mb-3 js-like">
+												<p class="mb-0">
+													<i class="js-likes-icon {% if app.user and leCommentaire.isLikedByUser(app.user) %} fa-solid {% else %} far {% endif %} fa-thumbs-up me-2"></i>
+													<span class="js-likes">
+														({{ leCommentaire.likes| length }})
+													</span>
+													Like
+												</p>
+											</a>
+											{# <a href="{{ path('app_commentaire_disLike', { 'id' : leCommentaire.id })}}" class="d-flex align-items-center ms-5 mb-3 js-disLike">
+																																													<p class="mb-0">
+																																														<i class="js-disLikes-icon {% if app.user and leCommentaire.isDisLikeByUser(app.user) %} fa-solid {% else %} far {% endif %} fa-thumbs-down me-2"></i>
+																																														<span class="js-disLikes">
+																																															{{ leCommentaire.likes| length }}
+																																														</span>
+																																														Dislike
+																																													</p>
+																																												</a> #}
 										</div>
-									{% else %}
-										<p>no records found</p>
-									{% endfor %}
-								</div>
+									</div>
+								{% else %}
+									<p>no records found</p>
+								{% endfor %}
 							</div>
 						</div>
-					</section>
-				</div>
+					</div>
+				</section>
 			</div>
 		</div>
-		<section class="go_up">
-			<div class="position-relative">
-				<a href="#" class=" btn btn-primary position-absolute bottom-0 end-0 me-5 mb-5">Go Up ⇧</a>
-			</div>
-		</section>
-	</main>
-	{{ include("pays/show-ajax.html.twig") }}
-{% endblock %}
+	</div>
+	<section class="go_up">
+		<div class="position-relative">
+			<a href="#" class=" btn btn-primary position-absolute bottom-0 end-0 me-5 mb-5">Go Up ⇧</a>
+		</div>
+	</section>
+</main>
+{{ include("pays/show-ajax.html.twig") }}{% endblock %}

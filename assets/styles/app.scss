@@ -235,18 +235,17 @@ button:hover {
 }
 
 .card-patisserie {
-  margin-left: 100px;
+  margin-left: 50px;
   max-width: 600px;
   text-align: justify;
 }
 .card-patisserie2 {
-  margin-left: 200px;
+  margin-left: 100px;
   max-width: 600px;
   text-align: justify;
 }
 .card-patisserie3 {
-  margin-left: 400px;
-  max-width: 600px;
+  margin-left: 150px;
   text-align: justify;
 }
 
@@ -345,6 +344,7 @@ a {
   background-color: #1a1a19;
   color: #fff;
 }
+// partie des articles 
 
 .image_articles1 img {
   width: 300px !important;
@@ -414,9 +414,8 @@ a {
   border-radius: 19px;
 }
 
-.titre_home {
-  font-family: "Pinyon Script", cursive;
-  color: #fff;
+.titre_home2 {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 4em;
 }
 
@@ -535,11 +534,12 @@ body {
   margin-top: 85px;
   margin-left: 190px;
   margin-bottom: 15px;
-  font-size: 9em;
+  font-size: 7em;
   font-family: "Pinyon Script", cursive;
 }
 .bienvenue p {
-  text-align: justify;
+  margin-top: 10px;
+  text-align: center;
   font-size: 1em;
 }
 

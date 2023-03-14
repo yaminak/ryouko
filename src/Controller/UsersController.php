@@ -21,32 +21,6 @@ class UsersController extends AbstractController
         return $this->render('users/index.html.twig');
     }
 
-    /**
-     * @Route("/users/articles/ajout", name="users_articles_ajout")
-     */
-    public function ajoutArticles(Request $request)
-    {
-        $articles = new Articles;
-        
-        $form = $this->createForm(ArticlesType::class, $articles);
-        $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
-                $articles->setUser($this->getUser());
-               
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($articles);
-                $em->flush();
-
-                return $this->redirectToRoute('users');
-        }
-        
-        return $this->render('users/articles/ajout.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
      /**
      * @Route("/users/profil/modifier", name="users_profil_modifier")
      */
